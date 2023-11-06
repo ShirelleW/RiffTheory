@@ -1,0 +1,13 @@
+.fretDesign{
+    background-color: aqua;
+}
+.fretboardNotes{
+    width: 50vw;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+.individualNotes{
+    width: 12px;
+    height: 20px;
+}
