@@ -1,14 +1,10 @@
 import React from 'react'
-import Frets from './Frets'
 
+const String = ( { stringSet, numOfFrets } ) => {
 
-const String = ( { numOfStrings, numOfFrets } ) => {
+  console.log(stringSet)
   return (
-    <div className="String">
-       <div className="Frets">
-            <Frets />
-       </div>
-    </div>
+    <p>fed</p>
   )
 }
 
