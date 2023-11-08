@@ -1,9 +1,13 @@
 import React from 'react'
 import { useState } from 'react';
 import { notes } from './utils';
+import { noteHexes } from './utils';
 import { SelectedNotesContext } from './Context/SelectedNotesContext';
 import String from './String';
 import styles from '../styles/Styles.module.css'
+var randomColor = require('randomcolor');
+
+
 
 const Controls = () => {
 
@@ -46,6 +50,9 @@ const Controls = () => {
 
     }
 
+
+    let noteHexes = selectedNotes.map((ele) => (randomColor({luminosity: 'bright'})))
+
     return (
         <div>
             {/* EDIT TO TAKE IN WHOLE NUMBER */}
@@ -68,7 +75,7 @@ const Controls = () => {
                                     }
                                 </select>
                             </form>
-                            <SelectedNotesContext.Provider value={{ selectedNotes, setSelectedNotes }}>
+                            <SelectedNotesContext.Provider value={{ selectedNotes, setSelectedNotes, noteHexes }}>
                                 <String
                                     numOfStrings={numOfStrings}
                                     numOfFrets={numOfFrets}

@@ -1,3 +1,3 @@
 import { createContext , useState } from "react";
 
-export const SelectedNotesContext = createContext();
+export const SelectedNotesContext = createContext("A");
