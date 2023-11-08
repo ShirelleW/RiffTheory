@@ -1,41 +1,17 @@
 import React from 'react'
 import styles from '../styles/Styles.module.css'
 
-const Frets = () => {
+export const Frets = ( { stringNoteLayout } ) => {
 
-    // sharp of flat notation
+    console.log(stringNoteLayout)
 
-    const fretDesign = (
-        <div className={styles.fretDesign}>
-            fret
-        </div>
-    )
-    const notes = {
-        "C": fretDesign,
-        "Db": fretDesign,
-        "D": fretDesign,
-        "Eb": fretDesign,
-        "E": fretDesign,
-        "F": fretDesign,
-        "Gb": fretDesign,
-        "G": fretDesign,
-        "Ab": fretDesign,
-        "A": fretDesign,
-        "Bb": fretDesign,
-        "B": fretDesign,
-
-    }
-
-    return (
-        <div className="frets">
-            <div className={styles.fretboardNotes}>
-                {Object.keys(notes).map((keyName, i) => (
-                    <p className={styles.individualNotes}>{keyName}</p>
-
-                ))}
-            </div>
-        </div>
-    )
+  return (
+    <div className={styles.frets}>
+        {
+           stringNoteLayout.map((note) => 
+            <div className={styles.individualNotes}>{note}</div>
+           )
+        }
+    </div>
+  )
 }
-
-export default Frets

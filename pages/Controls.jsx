@@ -53,14 +53,14 @@ const Controls = () => {
                 <input type="text" onChange={e => setNumOfFrets(e.target.value <= 24 && e.target.value >= 12 ? e.target.value : 12)} />
             </form>
 
-            <div className="tuningSelector">
+            <div className={styles.tuningSelector}>
                 <form>
                     {
                         Object.entries(stringSet).map((stringNotePairs) =>
                            
                             <div className={styles.stringMapping}>
 
-                                <select value={stringNotePairs[1]} onChange={(e) => handleTunings(e, stringNotePairs[0])}>
+                                <select className={styles.openNoteSelector} value={stringNotePairs[1]} onChange={(e) => handleTunings(e, stringNotePairs[0])}>
                                     {
                                         notes.map((note) => <option value={note} >{note}</option>)
                                     }

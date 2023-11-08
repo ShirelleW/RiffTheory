@@ -1,6 +1,7 @@
 import React from 'react'
 import { notes } from './utils'
 import styles from '../styles/Styles.module.css'
+import { Frets } from './Frets'
 
 const String = ({ stringSet, numOfFrets, currentString }) => {
 
@@ -31,11 +32,10 @@ const String = ({ stringSet, numOfFrets, currentString }) => {
 
   return (
     <div id={styles.individualNotes}>
-      {
-        stringNoteLayout.map((note) =>
-          <p>{note}</p>
-        )
-      }
+        <Frets
+          stringNoteLayout={stringNoteLayout}
+          numOfFrets={numOfFrets}
+        />
     </div>
     
   )
