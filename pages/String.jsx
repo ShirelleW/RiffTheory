@@ -3,7 +3,7 @@ import { notes } from './utils'
 import styles from '../styles/Styles.module.css'
 import { Frets } from './Frets'
 
-const String = ({ stringSet, numOfFrets, currentString }) => {
+const String = ({ stringNum, numOfStrings, numOfFrets, currentString }) => {
 
 
 
@@ -33,8 +33,10 @@ const String = ({ stringSet, numOfFrets, currentString }) => {
   return (
     <div id={styles.individualNotes}>
         <Frets
+          numOfStrings={numOfStrings}
           stringNoteLayout={stringNoteLayout}
           numOfFrets={numOfFrets}
+          stringNum={stringNum}
         />
     </div>
     

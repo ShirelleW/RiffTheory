@@ -66,8 +66,9 @@ const Controls = () => {
                                     }
                                 </select>
                                 <String
+                                    numOfStrings={numOfStrings}
                                     numOfFrets={numOfFrets}
-                                    stringSet={stringSet}
+                                    stringNum={stringNotePairs[0]}
                                     currentString={stringNotePairs}
                                 />
                             </div>
