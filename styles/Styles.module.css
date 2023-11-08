@@ -1,13 +1,11 @@
-.fretDesign{
-    background-color: aqua;
-}
-.fretboardNotes{
-    width: 50vw;
+.stringMapping{
     display: flex;
     flex-direction: row;
-    justify-content: space-between;
 }
-.individualNotes{
-    width: 12px;
-    height: 20px;
+
+#individualNotes{
+    width: 80vw;
+    display: flex;
+    justify-content: space-evenly;
+    justify-content: space-between;
 }
