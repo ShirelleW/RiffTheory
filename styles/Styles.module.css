@@ -27,9 +27,6 @@
 }
 
 .individualNotesOddFret{
-    width: 3vw;
-    height: 7vh;
-    border-right: 2px solid gray;
     display: flex;
     justify-content: center;
     align-items: center;

@@ -1,13 +1,10 @@
-import React from 'react'
+import React, { useContext } from 'react'
 import { notes } from './utils'
 import styles from '../styles/Styles.module.css'
 import { Frets } from './Frets'
+import { notesToShow } from './Frets'
 
 const String = ({ stringNum, numOfStrings, numOfFrets, currentString }) => {
-
-
-
-  // console.log(openNote)
 
   let openNote = currentString[1]
 
@@ -32,14 +29,14 @@ const String = ({ stringNum, numOfStrings, numOfFrets, currentString }) => {
 
   return (
     <div id={styles.individualNotes}>
-        <Frets
-          numOfStrings={numOfStrings}
-          stringNoteLayout={stringNoteLayout}
-          numOfFrets={numOfFrets}
-          stringNum={stringNum}
-        />
+      <Frets
+        numOfStrings={numOfStrings}
+        stringNoteLayout={stringNoteLayout}
+        numOfFrets={numOfFrets}
+        stringNum={stringNum}
+      />
     </div>
-    
+
   )
 }
 

@@ -1,11 +1,14 @@
 import React from 'react'
 import { useState } from 'react';
 import { notes } from './utils';
+import { SelectedNotesContext } from './Context/SelectedNotesContext';
 import String from './String';
 import styles from '../styles/Styles.module.css'
 
 const Controls = () => {
 
+    const [selectedNotes, setSelectedNotes] = useState([])
+    
     const [numOfStrings, setNumOfStrings] = useState(6)
     const [numOfFrets, setNumOfFrets] = useState(12);
 
@@ -57,7 +60,7 @@ const Controls = () => {
                 <form>
                     {
                         Object.entries(stringSet).map((stringNotePairs) =>
-                           
+
                             <div className={styles.stringMapping}>
 
                                 <select className={styles.openNoteSelector} value={stringNotePairs[1]} onChange={(e) => handleTunings(e, stringNotePairs[0])}>
@@ -65,12 +68,15 @@ const Controls = () => {
                                         notes.map((note) => <option value={note} >{note}</option>)
                                     }
                                 </select>
-                                <String
-                                    numOfStrings={numOfStrings}
-                                    numOfFrets={numOfFrets}
-                                    stringNum={stringNotePairs[0]}
-                                    currentString={stringNotePairs}
-                                />
+                                <SelectedNotesContext.Provider value={{selectedNotes, setSelectedNotes}}>
+                                    <String
+                                        numOfStrings={numOfStrings}
+                                        numOfFrets={numOfFrets}
+                                        stringNum={stringNotePairs[0]}
+                                        currentString={stringNotePairs}
+                                    />
+                                </SelectedNotesContext.Provider>
+
                             </div>
 
                         )
