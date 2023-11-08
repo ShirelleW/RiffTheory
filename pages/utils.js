@@ -4,7 +4,7 @@ export const majorSeven = (startingNote) => {
     // slider highlights chord based off fret position
 }
 export const majorNine = (startingNote) => {
-    return ["A", "B"]
+    return ["A", "B", "c", "D", "E", "F", "G"]
 }
 export const chordTypes = {
     majorSeven: majorSeven,
