@@ -1,7 +1,7 @@
 import React from 'react'
 import { useState } from 'react';
 import { notes } from './utils';
-import { noteHexes } from './utils';
+import { chordTypes } from './utils';
 import { SelectedNotesContext } from './Context/SelectedNotesContext';
 import String from './String';
 import styles from '../styles/Styles.module.css'
@@ -12,6 +12,8 @@ var randomColor = require('randomcolor');
 const Controls = () => {
 
     const [selectedNotes, setSelectedNotes] = useState([])
+    const [modeNotes, setModeNotes] = useState(["F", "G"])
+    const [keyChange, setKeyChange] = useState("C")
 
     const [numOfStrings, setNumOfStrings] = useState(6)
     const [numOfFrets, setNumOfFrets] = useState(12);
@@ -50,8 +52,14 @@ const Controls = () => {
 
     }
 
-
-    let noteHexes = selectedNotes.map((ele) => (randomColor({luminosity: 'bright'})))
+    const handleKeyChange = (e) => {
+        setKeyChange(e.target.value)
+    }
+    const handleChordTypeChange = (e) => {
+        setModeNotes(chordTypes[e.target.value](keyChange))
+    }
+   
+    let noteHexes = selectedNotes.map((ele) => (randomColor({ luminosity: 'bright' })))
 
     return (
         <div>
@@ -61,6 +69,16 @@ const Controls = () => {
                 <input type="text" onChange={handleStrings} />
                 <label htmlFor="numOfFrets">Number of Frets (12-24): </label>
                 <input type="text" onChange={e => setNumOfFrets(e.target.value <= 24 && e.target.value >= 12 ? e.target.value : 12)} />
+                <select className={styles.keySelector} onChange={(e) => handleKeyChange(e)}>
+                    {
+                        notes.map((note) => <option value={note} >{note}</option>)
+                    }
+                </select>
+                <select className={styles.chordTypeSelector} onChange={(e) => handleChordTypeChange(e)}>
+                    {
+                        Object.entries(chordTypes).map((type) => <option value={type[0]}>{type[0]}</option>)
+                    }
+                </select>
             </form>
 
             <div className={styles.tuningSelector}>
@@ -75,7 +93,7 @@ const Controls = () => {
                                     }
                                 </select>
                             </form>
-                            <SelectedNotesContext.Provider value={{ selectedNotes, setSelectedNotes, noteHexes }}>
+                            <SelectedNotesContext.Provider value={{ selectedNotes, setSelectedNotes, noteHexes, modeNotes }}>
                                 <String
                                     numOfStrings={numOfStrings}
                                     numOfFrets={numOfFrets}
@@ -83,7 +101,6 @@ const Controls = () => {
                                     currentString={stringNotePairs}
                                 />
                             </SelectedNotesContext.Provider>
-
                         </div>
 
                     )

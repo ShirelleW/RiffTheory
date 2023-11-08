@@ -1,5 +1,5 @@
-.openNotes{
-   background-color: bisque; 
+.openNotes {
+    background-color: bisque;
 }
 
 .openNoteSelector {
@@ -11,7 +11,7 @@
 .stringMapping {
     display: flex;
     flex-direction: row;
-    
+
 }
 
 .frets {
@@ -20,11 +20,31 @@
     border-left: 5px solid black;
 }
 
+.hoverSlider {
+    position: absolute;
+    display: flex;
+    flex-direction: row;
+}
+
+.fretHover {
+    border-radius: 5%;
+    height: max-content;
+    width: max-content;
+    background-color: aqua;
+    z-index: 1;
+    opacity: .1;
+    width: 3vw;
+    height: 7vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
 .individualNotes {
     border-radius: 5%;
     height: max-content;
     width: max-content;
-    background-color: #efc3a8;
+    /* background-color: #efc3a8; */
 
     width: 3vw;
     height: 7vh;
@@ -50,6 +70,7 @@
     width: 25px;
     height: 25px;
 }
+
 .oddFretInlay {
     background-color: black;
     border-radius: 50%;
