@@ -8,7 +8,7 @@ import styles from '../styles/Styles.module.css'
 const Controls = () => {
 
     const [selectedNotes, setSelectedNotes] = useState([])
-    
+
     const [numOfStrings, setNumOfStrings] = useState(6)
     const [numOfFrets, setNumOfFrets] = useState(12);
 
@@ -57,31 +57,30 @@ const Controls = () => {
             </form>
 
             <div className={styles.tuningSelector}>
-                <form>
-                    {
-                        Object.entries(stringSet).map((stringNotePairs) =>
+                {
+                    Object.entries(stringSet).map((stringNotePairs) =>
 
-                            <div className={styles.stringMapping}>
-
+                        <div className={styles.stringMapping}>
+                            <form className={styles.openNotes}>
                                 <select className={styles.openNoteSelector} value={stringNotePairs[1]} onChange={(e) => handleTunings(e, stringNotePairs[0])}>
                                     {
                                         notes.map((note) => <option value={note} >{note}</option>)
                                     }
                                 </select>
-                                <SelectedNotesContext.Provider value={{selectedNotes, setSelectedNotes}}>
-                                    <String
-                                        numOfStrings={numOfStrings}
-                                        numOfFrets={numOfFrets}
-                                        stringNum={stringNotePairs[0]}
-                                        currentString={stringNotePairs}
-                                    />
-                                </SelectedNotesContext.Provider>
+                            </form>
+                            <SelectedNotesContext.Provider value={{ selectedNotes, setSelectedNotes }}>
+                                <String
+                                    numOfStrings={numOfStrings}
+                                    numOfFrets={numOfFrets}
+                                    stringNum={stringNotePairs[0]}
+                                    currentString={stringNotePairs}
+                                />
+                            </SelectedNotesContext.Provider>
 
-                            </div>
+                        </div>
 
-                        )
-                    }
-                </form>
+                    )
+                }
             </div>
         </div>
     )

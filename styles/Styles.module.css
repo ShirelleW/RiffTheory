@@ -1,39 +1,47 @@
-.tuningSelector{
-  
+.openNotes{
+   background-color: bisque; 
 }
-.openNoteSelector{
+
+.openNoteSelector {
     height: 7vh;
+    border-radius: 15%;
+    background: none;
 }
-.stringMapping{
+
+.stringMapping {
     display: flex;
     flex-direction: row;
-    /* height: 7vh; */
+    
 }
 
-.frets{
-    width: 80vw;
+.frets {
     display: flex;
     align-items: center;
-    border-left: 5px solid red;
-}   
+    border-left: 5px solid black;
+}
 
-.individualNotes{
+.individualNotes {
+    border-radius: 5%;
+    height: max-content;
+    width: max-content;
+    background-color: #efc3a8;
+
     width: 3vw;
     height: 7vh;
-    border-right: 2px solid gray;
+    border-right: 2px solid grey;
     display: flex;
     justify-content: center;
     align-items: center;
 }
 
-.individualNotesOddFret{
+.individualNotesOddFret {
     display: flex;
     justify-content: center;
     align-items: center;
     position: relative;
 }
 
-.oddFretInlay{
+.oddFretInlay {
     height: 3px;
     position: absolute;
     right: 0;
