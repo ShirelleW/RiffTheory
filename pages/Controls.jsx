@@ -25,6 +25,8 @@ const Controls = () => {
 
     const [sliderFretRange, setSliderFretRange] = useState(6)
     const [tutorialViewed, setTutorialViewed] = useState(false)
+    
+    const [tutorialSliderView, setTutorialSliderView] = useState(0)
 
     const handleStrings = (e) => {
         setNumOfStrings((Number(e.target.value) <= 12 && e.target.value > 0) ? Number(e.target.value) : 6)
@@ -45,7 +47,6 @@ const Controls = () => {
         }
     }
 
-    console.log(numOfStrings)
     const handleTunings = (e, stringNum) => {
         // making a copy of stringSet without modifying stringSet
         let userTunings = Object.fromEntries(Object.entries(stringSet))
@@ -64,15 +65,18 @@ const Controls = () => {
         setModeNotes(chordTypes[e.target.value](keyChange))
     }
 
+    const resetFretboard = () => {
+
+    }
     let noteHexes = selectedNotes.map((ele) => (randomColor({ luminosity: 'bright' })))
 
     return (
         <SelectedNotesContext.Provider value={{
-            selectedNotes, setSelectedNotes, noteHexes, modeNotes, setTutorialViewed
+            selectedNotes, setSelectedNotes, noteHexes, modeNotes, setTutorialViewed, setTutorialSliderView, tutorialSliderView
         }}>
             <div className={styles.mainContainer}>
                 {/* EDIT TO TAKE IN WHOLE NUMBER */}
-                <form action="">
+                <form className={styles.controls} action="">
                     <label htmlFor="numOfStrings">Number of Strings (6-12): </label>
                     <input type="text" onChange={handleStrings} />
                     <label htmlFor="numOfFrets">Number of Frets (12-24): </label>
@@ -94,9 +98,9 @@ const Controls = () => {
                             max={numOfFrets}
                             step={1}
                             onChange={(e) => setSliderFretRange(e.target.value)} />
-                        <p>Drag right for wider range!</p>
+                        {(tutorialViewed && tutorialSliderView === 1) && <p>Drag right for wider range!</p>}
                     </div>
-
+                    <button onClick={resetFretboard} className={styles.restFretboard}>Reset</button>
                 </form>
                 <div className={styles.fretboard}>
                     {

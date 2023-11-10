@@ -5,6 +5,12 @@
     height: 100vh;
 }
 
+.controls{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+    height: 20px;
+}
 .openNotes {
     background-color: bisque;
 }
@@ -42,8 +48,6 @@
 }
 
 #sliderRangeNoAnim{
-    display: flex;
-    flex-direction: row;
     color: transparent;
 }
 
@@ -104,7 +108,7 @@
     height: 25px;
 }
 
-.oddFretInlay {
+.fretInlay {
     background-color: black;
     border-radius: 50%;
     height: 10px;

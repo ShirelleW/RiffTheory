@@ -5,9 +5,7 @@ import { SelectedNotesContext } from './Context/SelectedNotesContext'
 
 const Slider = ({ sliderFretRange, numOfStrings }) => {
 
-    const [tutorialSliderView, setTutorialSliderView] = useState(0)
-
-    const { setTutorialViewed } = useContext(SelectedNotesContext)
+    const { setTutorialViewed, setTutorialSliderView, tutorialSliderView} = useContext(SelectedNotesContext)
 
     const handleDrag = () => {
         setTutorialSliderView(tutorialSliderView + 1)

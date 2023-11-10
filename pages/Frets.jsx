@@ -9,7 +9,8 @@ export const Frets = ({ stringNum, numOfStrings, stringNoteLayout }) => {
 
     const { selectedNotes, setSelectedNotes, noteHexes, modeNotes } = useContext(SelectedNotesContext)
 
-    const oddFretInlay = Math.floor(numOfStrings / 2)
+    const fretInlayString = Math.floor(numOfStrings / 2)
+    const fretInlayFret = [2,4,6,8,11,14,16,18,20,23]
 
     const toggleNoteView = (note) => {
         if (selectedNotes.includes(note)) {
@@ -23,15 +24,14 @@ export const Frets = ({ stringNum, numOfStrings, stringNoteLayout }) => {
                 <div className={styles.frets}>
                     {
                         stringNoteLayout.map((note, i) =>
-                        // Selected Theory Display
                         // Selected Notes Display
                         (
-                            i % 2 === 0 && Number(stringNum) === oddFretInlay ?
+                            fretInlayFret.includes(i) && Number(stringNum) === fretInlayString ?
                                 <div className={styles.individualNotesOddFret}>
                                     <div onClick={() => toggleNoteView(note)} className={styles.individualNotes}>
                                         <p style={{ backgroundColor: noteHexes[selectedNotes.indexOf(note)], 'opacity': 0.6 }} id={selectedNotes.includes(note) && styles.noteToggle}>{selectedNotes.includes(note) && note}</p>
                                     </div>
-                                    <div className={styles.oddFretInlay}> </div>
+                                    <div className={styles.fretInlay}> </div>
                                 </div> :
                                 (
                                     modeNotes.includes(note) ? (
