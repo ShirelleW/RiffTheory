@@ -4,7 +4,7 @@ import styles from '../styles/Styles.module.css'
 import { Frets } from './Frets'
 import { notesToShow } from './Frets'
 
-const String = ({ stringNum, numOfStrings, numOfFrets, currentString, modeNotes }) => {
+const String = ({ stringNum, numOfStrings, numOfFrets, currentString, modeNotes , setSliderFretRange, sliderFretRange}) => {
 
   let openNote = currentString[1]
 
@@ -28,12 +28,16 @@ const String = ({ stringNum, numOfStrings, numOfFrets, currentString, modeNotes 
   const stringNoteLayout = stringLayout()
 
   return (
+    <div className={styles.fretboard}>
       <Frets
         numOfStrings={numOfStrings}
         stringNoteLayout={stringNoteLayout}
         numOfFrets={numOfFrets}
         stringNum={stringNum}
       />
+
+    </div>
+
   )
 }
 

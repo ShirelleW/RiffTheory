@@ -1,10 +1,11 @@
 import React from 'react'
 import { useState } from 'react';
-import { notes } from './utils';
+import { notes, frets } from './utils';
 import { chordTypes } from './utils';
 import { SelectedNotesContext } from './Context/SelectedNotesContext';
 import String from './String';
 import styles from '../styles/Styles.module.css'
+import Slider from './Slider';
 var randomColor = require('randomcolor');
 
 
@@ -21,6 +22,8 @@ const Controls = () => {
     const [stringSet, setStringSet] = useState({
         1: "E", 2: "A", 3: "D", 4: "G", 5: "B", 6: "F"
     })
+
+    const [sliderFretRange, setSliderFretRange] = useState(6)
 
     const handleStrings = (e) => {
         setNumOfStrings((e.target.value <= 12 && e.target.value > 0) ? e.target.value : 6)
@@ -58,11 +61,11 @@ const Controls = () => {
     const handleChordTypeChange = (e) => {
         setModeNotes(chordTypes[e.target.value](keyChange))
     }
-   
+
     let noteHexes = selectedNotes.map((ele) => (randomColor({ luminosity: 'bright' })))
 
     return (
-        <div>
+        <div className={styles.mainContainer}>
             {/* EDIT TO TAKE IN WHOLE NUMBER */}
             <form action="">
                 <label htmlFor="numOfStrings">Number of Strings (6-12): </label>
@@ -79,9 +82,11 @@ const Controls = () => {
                         Object.entries(chordTypes).map((type) => <option value={type[0]}>{type[0]}</option>)
                     }
                 </select>
+
+                <input type="range" name="sliderRange" min="0" max={numOfFrets} step={1} onChange={(e) => setSliderFretRange(e.target.value)} />
             </form>
 
-            <div className={styles.tuningSelector}>
+            <div className={styles.fretboard}>
                 {
                     Object.entries(stringSet).map((stringNotePairs) =>
 
@@ -93,18 +98,24 @@ const Controls = () => {
                                     }
                                 </select>
                             </form>
-                            <SelectedNotesContext.Provider value={{ selectedNotes, setSelectedNotes, noteHexes, modeNotes }}>
-                                <String
-                                    numOfStrings={numOfStrings}
-                                    numOfFrets={numOfFrets}
-                                    stringNum={stringNotePairs[0]}
-                                    currentString={stringNotePairs}
-                                />
+                            <SelectedNotesContext.Provider value={{
+                                selectedNotes, setSelectedNotes, noteHexes, modeNotes
+                            }}>
+                                <div className={styles.fretboard}>
+                                    <String
+                                        numOfStrings={numOfStrings}
+                                        numOfFrets={numOfFrets}
+                                        stringNum={stringNotePairs[0]}
+                                        currentString={stringNotePairs}
+                                    />
+                                </div>
                             </SelectedNotesContext.Provider>
                         </div>
-
                     )
                 }
+              <Slider 
+                numOfStrings={numOfStrings}
+                sliderFretRange={sliderFretRange} />
             </div>
         </div>
     )

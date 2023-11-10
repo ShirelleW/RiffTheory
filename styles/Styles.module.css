@@ -1,7 +1,20 @@
+.mainContainer{
+    display: flex;
+    flex-direction: column;
+    width: 100vw;
+    height: 100vh;
+}
+
 .openNotes {
     background-color: bisque;
 }
 
+.fretboard{
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    width: max-content;
+}
 .openNoteSelector {
     height: 7vh;
     border-radius: 15%;
@@ -11,7 +24,6 @@
 .stringMapping {
     display: flex;
     flex-direction: row;
-
 }
 
 .frets {
@@ -20,12 +32,13 @@
     border-left: 5px solid black;
 }
 
-.hoverSlider {
-    position: absolute;
-    display: flex;
-    flex-direction: row;
-}
 
+.slider{
+    pointer-events: fill;
+    position: absolute;
+    background-color: aqua;
+    opacity: .1;
+}
 .fretHover {
     border-radius: 5%;
     height: max-content;
@@ -33,7 +46,7 @@
     background-color: aqua;
     z-index: 1;
     opacity: .1;
-    width: 3vw;
+    width: 3.2vw;
     height: 7vh;
     display: flex;
     justify-content: center;
