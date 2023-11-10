@@ -17,7 +17,7 @@ const Controls = () => {
     const [numOfFrets, setNumOfFrets] = useState(12);
 
     const [stringSet, setStringSet] = useState({
-        1: "E", 2: "A", 3: "D", 4: "G", 5: "B", 6: "F"
+        1: "E", 2: "B", 3: "G", 4: "D", 5: "A", 6: "E"
     })
 
     const [sliderFretRange, setSliderFretRange] = useState(6)
@@ -27,19 +27,19 @@ const Controls = () => {
 
     const handleStrings = (e) => {
         if (Number(e.target.value) < 6) {
-            const originalSet = { 1: "E", 2: "A", 3: "D", 4: "G", 5: "B", 6: "F" }
+            const originalSet = { 1: "E", 2: "B", 3: "G", 4: "D", 5: "A", 6: "E" }
 
             let userSet = Number(e.target.value) === 0 ? originalSet : 
-                Object.fromEntries(Object.entries(originalSet).slice(0, Number(e.target.value)));
+                Object.fromEntries(Object.entries(originalSet).slice(-Number(e.target.value)));
             setStringSet(userSet)
             setNumOfStrings(Object.keys(userSet).length)
         } else {
-            let userSet = { 1: "E", 2: "A", 3: "D", 4: "G", 5: "B", 6: "F" }
+            let userSet = { 1: "E", 2: "B", 3: "G", 4: "D", 5: "A", 6: "E" }
             let secondarySet = {
-                7: "Eb", 8: "Ab", 9: "Db", 10: "Gb", 11: "Bb", 12: "C"
+                7: "Gb", 8: "B", 9: "E", 10: "A", 11: "D", 12: "G"
             }
 
-            userSet = Object.assign(userSet, Object.fromEntries(Object.entries(secondarySet).slice(0, Number(e.target.value) - 6)))
+            userSet = Object.assign({}, userSet, Object.fromEntries(Object.entries(secondarySet).slice(0, Number(e.target.value) - 6)))
             setStringSet(userSet)
             setNumOfStrings(Object.keys(userSet).length)
         }
