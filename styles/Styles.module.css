@@ -42,6 +42,29 @@
     text-orientation: upright;
 }
 
+#sliderRangeNoAnim{
+    display: flex;
+    flex-direction: row;
+    color: transparent;
+}
+
+.sliderRangeInput{
+    width: max-content;
+    animation: tutorial 5s;
+}
+
+@keyframes tutorial {
+   0% {
+        background: red;
+        color: black;
+      }
+    100% {
+        background: none;
+        border: none;
+      }
+}
+
+
 .slider:hover {
     display: flex;
     justify-content: center;
