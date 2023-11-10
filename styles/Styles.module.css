@@ -34,10 +34,9 @@
 }
 
 .slider {
+    background-color: rgba(201, 243, 255, 0.4);
     pointer-events: fill;
     position: absolute;
-    background-color: aqua;
-    opacity: .25;
     color: transparent;
     text-orientation: upright;
 }
@@ -66,33 +65,19 @@
 
 
 .slider:hover {
+    color: black;
     display: flex;
     justify-content: center;
     align-items: center;
-    opacity: .5;
-    color: black;
     border: 3px solid red;
 }
 
-.fretHover {
-    border-radius: 5%;
-    height: max-content;
-    width: max-content;
-    background-color: aqua;
-    z-index: 1;
-    opacity: .1;
-    width: 3.2vw;
-    height: 7vh;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
 
 .individualNotes {
     border-radius: 5%;
     height: max-content;
     width: max-content;
-    /* background-color: #efc3a8; */
+    background-color: #efc3a8;
 
     width: 3vw;
     height: 7vh;

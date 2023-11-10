@@ -20,7 +20,7 @@ const Slider = ({ sliderFretRange, numOfStrings }) => {
     return (
         <Draggable bounds='parent' onStart={handleDrag}>
                 <div className={styles.slider} style={{ width: (3.15 * sliderFretRange) + 'vw', height: (7 * numOfStrings) + 'vh' }}>
-                    Drag Me!
+                    Focus Visibility
                 </div>
         </Draggable>
     )
