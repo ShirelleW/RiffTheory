@@ -10,7 +10,7 @@ import Slider from './Slider';
 const Controls = () => {
 
     const [selectedNotes, setSelectedNotes] = useState([])
-    const [modeNotes, setModeNotes] = useState(["F", "G"])
+    const [modeNotes, setModeNotes] = useState(["C", "E", "G"])
     const [keyChange, setKeyChange] = useState("C")
 
     const [numOfStrings, setNumOfStrings] = useState(6)
@@ -26,13 +26,13 @@ const Controls = () => {
     const [tutorialSliderView, setTutorialSliderView] = useState(0)
 
     const handleStrings = (e) => {
-        setNumOfStrings((Number(e.target.value) <= 12 && e.target.value > 0) ? Number(e.target.value) : 6)
         if (Number(e.target.value) < 6) {
             const originalSet = { 1: "E", 2: "A", 3: "D", 4: "G", 5: "B", 6: "F" }
 
             let userSet = Number(e.target.value) === 0 ? originalSet : 
                 Object.fromEntries(Object.entries(originalSet).slice(0, Number(e.target.value)));
             setStringSet(userSet)
+            setNumOfStrings(Object.keys(userSet).length)
         } else {
             let userSet = { 1: "E", 2: "A", 3: "D", 4: "G", 5: "B", 6: "F" }
             let secondarySet = {
@@ -41,6 +41,7 @@ const Controls = () => {
 
             userSet = Object.assign(userSet, Object.fromEntries(Object.entries(secondarySet).slice(0, Number(e.target.value) - 6)))
             setStringSet(userSet)
+            setNumOfStrings(Object.keys(userSet).length)
         }
     }
 
@@ -60,6 +61,7 @@ const Controls = () => {
     }
     const handleChordTypeChange = (e) => {
         setModeNotes(chordTypes[e.target.value](keyChange))
+        console.log(e.target.value)
     }
 
     const resetFretboard = () => {
@@ -85,7 +87,7 @@ const Controls = () => {
                     <input type="text" onChange={e => setNumOfFrets(e.target.value <= 24 && e.target.value >= 12 ? e.target.value : 12)} />
                     <select className={styles.keySelector} onChange={(e) => handleKeyChange(e)}>
                         {
-                            notes.map((note) => <option value={note} >{note}</option>)
+                            notes.map((note) => <option value={note}>{note}</option>)
                         }
                     </select>
                     <select className={styles.chordTypeSelector} onChange={(e) => handleChordTypeChange(e)}>
