@@ -6,8 +6,6 @@ import { SelectedNotesContext } from './Context/SelectedNotesContext';
 import String from './String';
 import styles from '../styles/Styles.module.css'
 import Slider from './Slider';
-var randomColor = require('randomcolor');
-
 
 const Controls = () => {
 
@@ -69,7 +67,7 @@ const Controls = () => {
         setSelectedNotes([])
     }
 
-    let noteHexes = selectedNotes.map((ele) => (randomColor({ luminosity: 'bright' })))
+    let noteHexes = ['#57C4E5', '#C8F0D8', '#ffff00', '#F97068', '#FFFFFC', '#F77F00', '#FCBF49', '#EAE2B7', '#2C6E49' , '#59FFA0', '#DB222A', '#C47AC0']
 
     return (
         <SelectedNotesContext.Provider value={{

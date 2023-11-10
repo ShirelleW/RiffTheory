@@ -1,14 +1,12 @@
 import React, { useContext, useState } from 'react'
 import styles from '../styles/Styles.module.css'
 import { SelectedNotesContext } from './Context/SelectedNotesContext'
-import randomColor from 'randomcolor'
+import { notes } from './utils'
 
 // Parent String
 export const Frets = ({ stringNum, numOfStrings, stringNoteLayout }) => {
 
-    // button that shows all notes
-
-    const { selectedNotes, setSelectedNotes, noteHexes, modeNotes, resetFretboard } = useContext(SelectedNotesContext)
+    const { selectedNotes, setSelectedNotes, noteHexes, modeNotes } = useContext(SelectedNotesContext)
 
 
     const fretInlayString = Math.floor(numOfStrings / 2)
@@ -22,6 +20,8 @@ export const Frets = ({ stringNum, numOfStrings, stringNoteLayout }) => {
         )
     }
 
+
+
     return (
         <div className={styles.frets}>
             {
@@ -31,7 +31,7 @@ export const Frets = ({ stringNum, numOfStrings, stringNoteLayout }) => {
                     fretInlayFret.includes(i) && Number(stringNum) === fretInlayString ?
                         <div className={styles.individualNotesOddFret}>
                             <div onClick={() => toggleNoteView(note)} className={styles.individualNotes}>
-                                <p style={{ backgroundColor: noteHexes[selectedNotes.indexOf(note)], 'opacity': 0.6 }} id={selectedNotes.includes(note) && styles.noteToggle}>{selectedNotes.includes(note) && note}</p>
+                                <p style={{ backgroundColor: noteHexes[notes.indexOf(note)], 'opacity': 0.6 }} id={selectedNotes.includes(note) && styles.noteToggle}>{selectedNotes.includes(note) && note}</p>
                             </div>
                             <div className={styles.fretInlay}> </div>
                         </div> :
@@ -40,7 +40,7 @@ export const Frets = ({ stringNum, numOfStrings, stringNoteLayout }) => {
                                 (
                                     <div className={styles.individualNotes}>
                                         <p style={{
-                                            backgroundColor: randomColor(),
+                                            backgroundColor: noteHexes[notes.indexOf(note)],
                                             'opacity': 0.6
                                         }} id={styles.noteToggle}>{note}</p>
                                     </div>
@@ -48,7 +48,7 @@ export const Frets = ({ stringNum, numOfStrings, stringNoteLayout }) => {
                             )
                                 :
                                 <div onClick={() => toggleNoteView(note)} className={styles.individualNotes}>
-                                    <p style={{ backgroundColor: noteHexes[selectedNotes.indexOf(note)], 'opacity': 0.6 }} id={selectedNotes.includes(note) && styles.noteToggle}>{selectedNotes.includes(note) && note}</p>
+                                    <p style={{ backgroundColor: noteHexes[notes.indexOf(note)], 'opacity': 0.6 }} id={selectedNotes.includes(note) && styles.noteToggle}>{selectedNotes.includes(note) && note}</p>
                                 </div>
                         )
                 )
