@@ -9,7 +9,6 @@ import Slider from './Slider';
 var randomColor = require('randomcolor');
 
 
-
 const Controls = () => {
 
     const [selectedNotes, setSelectedNotes] = useState([])
@@ -66,13 +65,18 @@ const Controls = () => {
     }
 
     const resetFretboard = () => {
-
+        setModeNotes([])
+        setSelectedNotes([])
     }
+
     let noteHexes = selectedNotes.map((ele) => (randomColor({ luminosity: 'bright' })))
 
     return (
         <SelectedNotesContext.Provider value={{
-            selectedNotes, setSelectedNotes, noteHexes, modeNotes, setTutorialViewed, setTutorialSliderView, tutorialSliderView
+            selectedNotes, setSelectedNotes, 
+            noteHexes, modeNotes, 
+            setTutorialViewed, setTutorialSliderView, 
+            tutorialSliderView
         }}>
             <div className={styles.mainContainer}>
                 {/* EDIT TO TAKE IN WHOLE NUMBER */}
@@ -100,8 +104,9 @@ const Controls = () => {
                             onChange={(e) => setSliderFretRange(e.target.value)} />
                         {(tutorialViewed && tutorialSliderView === 1) && <p>Drag right for wider range!</p>}
                     </div>
-                    <button onClick={resetFretboard} className={styles.restFretboard}>Reset</button>
+                    <button type='button' onClick={resetFretboard}>Reset</button>
                 </form>
+
                 <div className={styles.fretboard}>
                     {
                         Object.entries(stringSet).map((stringNotePairs) =>

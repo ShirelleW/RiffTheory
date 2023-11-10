@@ -3,14 +3,16 @@ import styles from '../styles/Styles.module.css'
 import { SelectedNotesContext } from './Context/SelectedNotesContext'
 import randomColor from 'randomcolor'
 
+// Parent String
 export const Frets = ({ stringNum, numOfStrings, stringNoteLayout }) => {
 
     // button that shows all notes
 
-    const { selectedNotes, setSelectedNotes, noteHexes, modeNotes } = useContext(SelectedNotesContext)
+    const { selectedNotes, setSelectedNotes, noteHexes, modeNotes, resetFretboard } = useContext(SelectedNotesContext)
+
 
     const fretInlayString = Math.floor(numOfStrings / 2)
-    const fretInlayFret = [2,4,6,8,11,14,16,18,20,23]
+    const fretInlayFret = [2, 4, 6, 8, 11, 14, 16, 18, 20, 23]
 
     const toggleNoteView = (note) => {
         if (selectedNotes.includes(note)) {
@@ -21,38 +23,38 @@ export const Frets = ({ stringNum, numOfStrings, stringNoteLayout }) => {
     }
 
     return (
-                <div className={styles.frets}>
-                    {
-                        stringNoteLayout.map((note, i) =>
-                        // Selected Notes Display
+        <div className={styles.frets}>
+            {
+                stringNoteLayout.map((note, i) =>
+                // Selected Notes Display
+                (
+                    fretInlayFret.includes(i) && Number(stringNum) === fretInlayString ?
+                        <div className={styles.individualNotesOddFret}>
+                            <div onClick={() => toggleNoteView(note)} className={styles.individualNotes}>
+                                <p style={{ backgroundColor: noteHexes[selectedNotes.indexOf(note)], 'opacity': 0.6 }} id={selectedNotes.includes(note) && styles.noteToggle}>{selectedNotes.includes(note) && note}</p>
+                            </div>
+                            <div className={styles.fretInlay}> </div>
+                        </div> :
                         (
-                            fretInlayFret.includes(i) && Number(stringNum) === fretInlayString ?
-                                <div className={styles.individualNotesOddFret}>
-                                    <div onClick={() => toggleNoteView(note)} className={styles.individualNotes}>
-                                        <p style={{ backgroundColor: noteHexes[selectedNotes.indexOf(note)], 'opacity': 0.6 }} id={selectedNotes.includes(note) && styles.noteToggle}>{selectedNotes.includes(note) && note}</p>
-                                    </div>
-                                    <div className={styles.fretInlay}> </div>
-                                </div> :
+                            modeNotes.includes(note) ? (
                                 (
-                                    modeNotes.includes(note) ? (
-                                        (
-                                            <div className={styles.individualNotes}>
-                                                <p style={{
-                                                    backgroundColor: randomColor(),
-                                                    'opacity': 0.6
-                                                }} id={styles.noteToggle}>{note}</p>
-                                            </div>
-                                        )
-                                    )
-                                        :
-                                        <div onClick={() => toggleNoteView(note)} className={styles.individualNotes}>
-                                            <p style={{ backgroundColor: noteHexes[selectedNotes.indexOf(note)], 'opacity': 0.6 }} id={selectedNotes.includes(note) && styles.noteToggle}>{selectedNotes.includes(note) && note}</p>
-                                        </div>
+                                    <div className={styles.individualNotes}>
+                                        <p style={{
+                                            backgroundColor: randomColor(),
+                                            'opacity': 0.6
+                                        }} id={styles.noteToggle}>{note}</p>
+                                    </div>
                                 )
+                            )
+                                :
+                                <div onClick={() => toggleNoteView(note)} className={styles.individualNotes}>
+                                    <p style={{ backgroundColor: noteHexes[selectedNotes.indexOf(note)], 'opacity': 0.6 }} id={selectedNotes.includes(note) && styles.noteToggle}>{selectedNotes.includes(note) && note}</p>
+                                </div>
                         )
-                        )
-                    }
-                </div>
+                )
+                )
+            }
+        </div>
     )
 }
 
