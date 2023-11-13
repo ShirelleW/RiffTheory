@@ -12,6 +12,7 @@ const Controls = () => {
     const [selectedNotes, setSelectedNotes] = useState([])
     const [modeNotes, setModeNotes] = useState(["C", "E", "G"])
     const [keyChange, setKeyChange] = useState("C")
+    const [chordType, setChordType] = useState("Major")
 
     const [numOfStrings, setNumOfStrings] = useState(6)
     const [numOfFrets, setNumOfFrets] = useState(12);
@@ -58,10 +59,12 @@ const Controls = () => {
 
     const handleKeyChange = (e) => {
         setKeyChange(e.target.value)
+        setModeNotes(chordTypes[chordType](e.target.value))
     }
+    
     const handleChordTypeChange = (e) => {
+        setChordType(e.target.value)
         setModeNotes(chordTypes[e.target.value](keyChange))
-        console.log(e.target.value)
     }
 
     const resetFretboard = () => {
