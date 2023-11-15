@@ -23,14 +23,14 @@ const Controls = () => {
 
     const [sliderFretRange, setSliderFretRange] = useState(6)
     const [tutorialViewed, setTutorialViewed] = useState(false)
-    
+
     const [tutorialSliderView, setTutorialSliderView] = useState(0)
 
     const handleStrings = (e) => {
         if (Number(e.target.value) < 6) {
             const originalSet = { 1: "E", 2: "B", 3: "G", 4: "D", 5: "A", 6: "E" }
 
-            let userSet = Number(e.target.value) === 0 ? originalSet : 
+            let userSet = Number(e.target.value) === 0 ? originalSet :
                 Object.fromEntries(Object.entries(originalSet).slice(-Number(e.target.value)));
             setStringSet(userSet)
             setNumOfStrings(Object.keys(userSet).length)
@@ -72,13 +72,13 @@ const Controls = () => {
         setSelectedNotes([])
     }
 
-    let noteHexes = ['#57C4E5', '#C8F0D8', '#ffff00', '#F97068', '#FFFFFC', '#F77F00', '#FCBF49', '#EAE2B7', '#2C6E49' , '#59FFA0', '#DB222A', '#C47AC0']
+    let noteHexes = ['#57C4E5', '#C8F0D8', '#ffff00', '#F97068', '#FFFFFC', '#F77F00', '#FCBF49', '#EAE2B7', '#2C6E49', '#59FFA0', '#DB222A', '#C47AC0']
 
     return (
         <SelectedNotesContext.Provider value={{
-            selectedNotes, setSelectedNotes, 
-            noteHexes, modeNotes, 
-            setTutorialViewed, setTutorialSliderView, 
+            selectedNotes, setSelectedNotes,
+            noteHexes, modeNotes,
+            setTutorialViewed, setTutorialSliderView,
             tutorialSliderView
         }}>
             <div className={styles.mainContainer}>
@@ -123,12 +123,12 @@ const Controls = () => {
                                     </select>
                                 </form>
 
-                                    <String
-                                        numOfStrings={numOfStrings}
-                                        numOfFrets={numOfFrets}
-                                        stringNum={stringNotePairs[0]}
-                                        currentString={stringNotePairs}
-                                    />
+                                <String
+                                    numOfStrings={numOfStrings}
+                                    numOfFrets={numOfFrets}
+                                    stringNum={stringNotePairs[0]}
+                                    currentString={stringNotePairs}
+                                />
                             </div>
                         )
                     }

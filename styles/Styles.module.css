@@ -26,6 +26,12 @@
     flex-direction: row;
 }
 
+.fretboardHolder{
+    position: relative;
+    display: flex;
+    flex-direction: column;
+}
+
 .frets {
     display: flex;
     align-items: center;
