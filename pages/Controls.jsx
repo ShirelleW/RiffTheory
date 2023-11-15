@@ -61,7 +61,7 @@ const Controls = () => {
         setKeyChange(e.target.value)
         setModeNotes(chordTypes[chordType](e.target.value))
     }
-    
+
     const handleChordTypeChange = (e) => {
         setChordType(e.target.value)
         setModeNotes(chordTypes[e.target.value](keyChange))
@@ -110,7 +110,7 @@ const Controls = () => {
                     <button type='button' onClick={resetFretboard}>Reset</button>
                 </form>
 
-                <div className={styles.fretboard}>
+                <div className={styles.fretboardHolder}>
                     {
                         Object.entries(stringSet).map((stringNotePairs) =>
 
@@ -123,14 +123,12 @@ const Controls = () => {
                                     </select>
                                 </form>
 
-                                <div className={styles.fretboard}>
                                     <String
                                         numOfStrings={numOfStrings}
                                         numOfFrets={numOfFrets}
                                         stringNum={stringNotePairs[0]}
                                         currentString={stringNotePairs}
                                     />
-                                </div>
                             </div>
                         )
                     }

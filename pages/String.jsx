@@ -28,16 +28,12 @@ const String = ({ stringNum, numOfStrings, numOfFrets, currentString, modeNotes 
   const stringNoteLayout = stringLayout()
 
   return (
-    <div className={styles.fretboard}>
       <Frets
         numOfStrings={numOfStrings}
         stringNoteLayout={stringNoteLayout}
         numOfFrets={numOfFrets}
         stringNum={stringNum}
       />
-
-    </div>
-
   )
 }
 

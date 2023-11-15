@@ -20,38 +20,44 @@ export const Frets = ({ stringNum, numOfStrings, stringNoteLayout }) => {
         )
     }
 
-
+    // line show through div
+    // mode note to show on odd fret inlay ?
 
     return (
         <div className={styles.frets}>
             {
                 stringNoteLayout.map((note, i) =>
-                // Selected Notes Display
-                (
-                    fretInlayFret.includes(i) && Number(stringNum) === fretInlayString ?
-                        <div className={styles.individualNotesOddFret}>
+                    modeNotes.includes(note) ? (
+                        fretInlayFret.includes(i) && Number(stringNum) === fretInlayString ?
+                            (
+                                <div className={styles.individualNotes}>
+                                    <p style={{
+                                        backgroundColor: noteHexes[notes.indexOf(note)],
+                                        'opacity': 0.6
+                                    }} id={styles.noteToggle}>{note}</p>
+                                    <div className={styles.fretInlay}></div>
+                                </div>
+                            ) :
+                            (
+                                <div className={styles.individualNotes}>
+                                    <p style={{
+                                        backgroundColor: noteHexes[notes.indexOf(note)],
+                                        'opacity': 0.6
+                                    }} id={styles.noteToggle}>{note}</p>
+                                </div>
+                            )
+                    )
+                        :
+                        fretInlayFret.includes(i) && Number(stringNum) === fretInlayString ?
+                            (
+                                <div onClick={() => toggleNoteView(note)} className={styles.individualNotes}>
+                                    <p style={{ backgroundColor: noteHexes[notes.indexOf(note)], 'opacity': 0.6 }} id={selectedNotes.includes(note) && styles.noteToggle}>{selectedNotes.includes(note) && note}</p>
+                                    <div className={styles.fretInlay}></div>
+                                </div>
+                            ) :
                             <div onClick={() => toggleNoteView(note)} className={styles.individualNotes}>
                                 <p style={{ backgroundColor: noteHexes[notes.indexOf(note)], 'opacity': 0.6 }} id={selectedNotes.includes(note) && styles.noteToggle}>{selectedNotes.includes(note) && note}</p>
                             </div>
-                            <div className={styles.fretInlay}> </div>
-                        </div> :
-                        (
-                            modeNotes.includes(note) ? (
-                                (
-                                    <div className={styles.individualNotes}>
-                                        <p style={{
-                                            backgroundColor: noteHexes[notes.indexOf(note)],
-                                            'opacity': 0.6
-                                        }} id={styles.noteToggle}>{note}</p>
-                                    </div>
-                                )
-                            )
-                                :
-                                <div onClick={() => toggleNoteView(note)} className={styles.individualNotes}>
-                                    <p style={{ backgroundColor: noteHexes[notes.indexOf(note)], 'opacity': 0.6 }} id={selectedNotes.includes(note) && styles.noteToggle}>{selectedNotes.includes(note) && note}</p>
-                                </div>
-                        )
-                )
                 )
             }
         </div>
