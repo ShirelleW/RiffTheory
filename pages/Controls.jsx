@@ -10,9 +10,9 @@ import Slider from './Slider';
 const Controls = () => {
 
     const [selectedNotes, setSelectedNotes] = useState([])
-    const [modeNotes, setModeNotes] = useState(["C", "E", "G"])
+    const [modeNotes, setModeNotes] = useState(["C", "D", "E", "F", "G", "A", "B", "C"])
     const [keyChange, setKeyChange] = useState("C")
-    const [chordType, setChordType] = useState("Major")
+    const [chordType, setChordType] = useState("Major Scale")
 
     const [numOfStrings, setNumOfStrings] = useState(6)
     const [numOfFrets, setNumOfFrets] = useState(12);
