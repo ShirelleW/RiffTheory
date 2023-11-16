@@ -1,8 +1,8 @@
 import React from 'react'
 import { useState } from 'react';
-import { notes } from './utils';
-import { chordTypes } from './utils';
-import { SelectedNotesContext } from './Context/SelectedNotesContext';
+import { notes } from '../Context/utils';
+import { chordTypes } from '../Context/utils';
+import { SelectedNotesContext } from '../Context/SelectedNotesContext';
 import String from './String';
 import styles from '../styles/Styles.module.css'
 import Slider from './Slider';

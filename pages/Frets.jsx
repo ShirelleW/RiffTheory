@@ -1,8 +1,8 @@
 import React, { useContext } from 'react'
 import PropTypes from 'prop-types';
 import styles from '../styles/Styles.module.css'
-import { SelectedNotesContext } from './Context/SelectedNotesContext'
-import { notes } from './utils'
+import { SelectedNotesContext } from '../Context/SelectedNotesContext'
+import { notes } from '../Context/utils'
 
 // Parent String
 export const Frets = ({ stringNum, numOfStrings, stringNoteLayout }) => {

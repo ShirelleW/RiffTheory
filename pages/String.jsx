@@ -1,6 +1,6 @@
 import React from 'react'
 import PropTypes from 'prop-types';
-import { notes } from './utils'
+import { notes } from '../Context/utils'
 import { Frets } from './Frets'
 
 
