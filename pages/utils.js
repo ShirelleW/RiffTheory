@@ -52,6 +52,21 @@ const minorChord = (root) => {
     return minorTriad
 }
 
+const minorSeventhChord = (root) => {
+    const minorScale = getMinorScale(root)
+    // 1, 3, 5 , 7 off minor scale
+    const minorSevChord = [root, minorScale[2], minorScale[4], minorScale[6]]
+    return minorSevChord
+}
+
+const majorSeventhChord = (root) => {
+    const majorScale = getMajorScale(root)
+    // 1, 3, 5 , 7 off minor scale
+    console.log(majorScale)
+    const majorSevChord = [root, majorScale[2], majorScale[4], majorScale[6]]
+    console.log(majorSevChord)
+    return majorSevChord
+}
 export const chordTypes = {
     "Scales": null,
     "Major Scale": getMajorScale,
@@ -59,7 +74,10 @@ export const chordTypes = {
 
     "Major Chords": null,
     "Major Triad": majorChord,
+    "Major Seventh": majorSeventhChord,
+
     "Minor Chords": null,
     "Minor Triad": minorChord,
+    "Minor 7th": minorSeventhChord,
 }
 

@@ -95,7 +95,7 @@ const Controls = () => {
                     </select>
                     <select className={styles.chordTypeSelector} onChange={(e) => handleChordTypeChange(e)}>
                         {
-                            Object.entries(chordTypes).map((type) => <option disabled={type[1] === null && true}  value={type[0]}>{type[0]}</option>)
+                            Object.entries(chordTypes).map((type) => <option style={{backgroundColor: type[1] === null && 'silver'}} disabled={type[1] === null && true} value={type[0]}>{type[0]}</option>)
                         }
                     </select>
                     <div className={tutorialViewed && styles.sliderRangeInput} id={styles.sliderRangeNoAnim}>
