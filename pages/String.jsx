@@ -1,10 +1,9 @@
-import React, { useContext } from 'react'
+import React from 'react'
 import { notes } from './utils'
-import styles from '../styles/Styles.module.css'
 import { Frets } from './Frets'
-import { notesToShow } from './Frets'
+import PropTypes from 'prop-types';
 
-const String = ({ stringNum, numOfStrings, numOfFrets, currentString, modeNotes , setSliderFretRange, sliderFretRange}) => {
+const String = ({ stringNum, numOfStrings, numOfFrets, currentString }) => {
 
   let openNote = currentString[1]
 
@@ -38,3 +37,10 @@ const String = ({ stringNum, numOfStrings, numOfFrets, currentString, modeNotes 
 }
 
 export default String
+
+String.propTypes = {
+  stringNum: PropTypes.String,
+  numOfStrings: PropTypes.Number,
+  numOfFrets: PropTypes.Number, 
+  currentString: PropTypes.Object,
+};

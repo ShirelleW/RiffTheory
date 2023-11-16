@@ -15,5 +15,10 @@
   },
   "engines": {
     "node": ">=18"
+  },
+  "devDependencies": {
+    "eslint": "^8.53.0",
+    "eslint-plugin-react": "^7.33.2",
+    "prop-types": "^15.8.1"
   }
 }

@@ -1,4 +1,5 @@
-import React, { useContext, useState } from 'react'
+import React, { useContext } from 'react'
+import PropTypes from 'prop-types';
 import styles from '../styles/Styles.module.css'
 import { SelectedNotesContext } from './Context/SelectedNotesContext'
 import { notes } from './utils'
@@ -65,3 +66,9 @@ export const Frets = ({ stringNum, numOfStrings, stringNoteLayout }) => {
 }
 
 export default Frets;
+
+Frets.propTypes = {
+    stringNum: PropTypes.String,
+    numOfStrings: PropTypes.Number,
+    stringNoteLayout: PropTypes.Object,
+  };

@@ -1,6 +1,6 @@
 import React from 'react'
 import { useState } from 'react';
-import { notes, frets } from './utils';
+import { notes } from './utils';
 import { chordTypes } from './utils';
 import { SelectedNotesContext } from './Context/SelectedNotesContext';
 import String from './String';
@@ -90,12 +90,12 @@ const Controls = () => {
                     <input type="text" onChange={e => setNumOfFrets(e.target.value <= 24 && e.target.value >= 12 ? e.target.value : 12)} />
                     <select className={styles.keySelector} onChange={(e) => handleKeyChange(e)}>
                         {
-                            notes.map((note) => <option value={note}>{note}</option>)
+                            notes.map((note) => <option key={note} value={note}>{note}</option>)
                         }
                     </select>
                     <select className={styles.chordTypeSelector} onChange={(e) => handleChordTypeChange(e)}>
                         {
-                            Object.entries(chordTypes).map((type) => <option style={{backgroundColor: type[1] === null && 'silver'}} disabled={type[1] === null && true} value={type[0]}>{type[0]}</option>)
+                            Object.entries(chordTypes).map((type) => <option key={type} style={{backgroundColor: type[1] === null && 'silver'}} disabled={type[1] === null && true} value={type[0]}>{type[0]}</option>)
                         }
                     </select>
                     <div className={tutorialViewed && styles.sliderRangeInput} id={styles.sliderRangeNoAnim}>
@@ -114,11 +114,11 @@ const Controls = () => {
                     {
                         Object.entries(stringSet).map((stringNotePairs) =>
 
-                            <div className={styles.stringMapping}>
+                            <div key={stringNotePairs[0]} className={styles.stringMapping}>
                                 <form className={styles.openNotes}>
                                     <select className={styles.openNoteSelector} value={stringNotePairs[1]} onChange={(e) => handleTunings(e, stringNotePairs[0])}>
                                         {
-                                            notes.map((note) => <option value={note} >{note}</option>)
+                                            notes.map((note) => <option key={note} value={note} >{note}</option>)
                                         }
                                     </select>
                                 </form>
