@@ -39,8 +39,8 @@ const String = ({ stringNum, numOfStrings, numOfFrets, currentString }) => {
 export default String
 
 String.propTypes = {
-  stringNum: PropTypes.String,
-  numOfStrings: PropTypes.Number,
-  numOfFrets: PropTypes.Number, 
-  currentString: PropTypes.Object,
+  stringNum: PropTypes.string,
+  numOfStrings: PropTypes.number,
+  numOfFrets: PropTypes.number, 
+  currentString: PropTypes.array,
 };

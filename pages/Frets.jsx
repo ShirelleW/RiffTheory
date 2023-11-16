@@ -68,7 +68,7 @@ export const Frets = ({ stringNum, numOfStrings, stringNoteLayout }) => {
 export default Frets;
 
 Frets.propTypes = {
-    stringNum: PropTypes.String,
-    numOfStrings: PropTypes.Number,
-    stringNoteLayout: PropTypes.Object,
+    stringNum: PropTypes.string,
+    numOfStrings: PropTypes.number,
+    stringNoteLayout: PropTypes.array,
   };
