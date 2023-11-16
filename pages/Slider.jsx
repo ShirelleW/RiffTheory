@@ -1,4 +1,5 @@
-import React, { useContext, useState } from 'react'
+import React, { useContext } from 'react'
+import PropTypes from 'prop-types';
 import styles from '../styles/Styles.module.css'
 import Draggable from 'react-draggable'
 import { SelectedNotesContext } from './Context/SelectedNotesContext'
@@ -25,3 +26,8 @@ const Slider = ({ sliderFretRange, numOfStrings }) => {
 }
 
 export default Slider
+
+Slider.propTypes = {
+    sliderFretRange: PropTypes.number,
+    numOfStrings: PropTypes.number,
+}

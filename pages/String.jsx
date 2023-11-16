@@ -1,7 +1,8 @@
 import React from 'react'
+import PropTypes from 'prop-types';
 import { notes } from './utils'
 import { Frets } from './Frets'
-import PropTypes from 'prop-types';
+
 
 const String = ({ stringNum, numOfStrings, numOfFrets, currentString }) => {
 
