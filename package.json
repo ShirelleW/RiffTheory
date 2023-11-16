@@ -1,14 +1,11 @@
 {
-  "homepage": "http://ShirelleW.github.io/RiffTheory",
   "name": "RiffTheory",
   "author": "Shirelle Winecoff",
   "private": true,
   "scripts": {
     "build": "next build",
     "dev": "next dev",
-    "start": "next start",
-    "predeploy": "npm run build",
-    "deploy": "gh-pages -d build"
+    "start": "next start"
   },
   "dependencies": {
     "next": "latest",
@@ -18,8 +15,5 @@
   },
   "engines": {
     "node": ">=18"
-  },
-  "devDependencies": {
-    "gh-pages": "^6.0.0"
   }
 }
