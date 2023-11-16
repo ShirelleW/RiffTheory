@@ -51,10 +51,15 @@ const minorChord = (root) => {
     const minorTriad = [root, minorScale[2], minorScale[4]]
     return minorTriad
 }
+
 export const chordTypes = {
+    "Scales": null,
     "Major Scale": getMajorScale,
     "Natural Minor Scale": getMinorScale,
-    "Major Chord": majorChord,
-    "Minor Chord": minorChord,
+
+    "Major Chords": null,
+    "Major Triad": majorChord,
+    "Minor Chords": null,
+    "Minor Triad": minorChord,
 }
 
