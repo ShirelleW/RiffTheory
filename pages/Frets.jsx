@@ -5,9 +5,8 @@ import { SelectedNotesContext } from '../Context/SelectedNotesContext'
 import { notes } from '../Context/utils'
 
 // Parent String
-export const Frets = ({ stringNum, numOfStrings, stringNoteLayout }) => {
+export const Frets = ({ stringNum, numOfStrings, stringNoteLayout, noteHexes }) => {
 
-    const noteHexes = ['#57C4E5', '#C8F0D8', '#ffff00', '#F97068', '#FFFFFC', '#F77F00', '#FCBF49', '#EAE2B7', '#2C6E49', '#59FFA0', '#DB222A', '#C47AC0']
     const { selectedNotes, setSelectedNotes, modeNotes } = useContext(SelectedNotesContext)
 
     const fretInlayString = Math.floor(numOfStrings / 2)
@@ -68,4 +67,5 @@ Frets.propTypes = {
     stringNum: PropTypes.string,
     numOfStrings: PropTypes.number,
     stringNoteLayout: PropTypes.array,
+    noteHexes: PropTypes.array
   };

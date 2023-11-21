@@ -11,14 +11,10 @@
     justify-content: space-evenly;
     height: 20px;
 }
-.openNotes {
-    background-color: bisque;
-}
 
 .openNoteSelector {
     height: 7vh;
     border-radius: 15%;
-    background: none;
 }
 
 .stringMapping {

@@ -28,6 +28,8 @@ const Controls = () => {
     const [tutorialSliderView, setTutorialSliderView] = useState(0)
     const [openView, setOpenView] = useState(true)
 
+    const [noteHexes] = useState(['#57C4E5', '#C8F0D8', '#ffff00', '#F97068', '#DC493A', '#F77F00', '#FCBF49', '#EAE2B7', '#2C6E49', '#59FFA0', '#DB222A', '#C47AC0'])
+
     const handleStrings = (e) => {
         if (Number(e.target.value) < 6) {
             const originalSet = { 1: "E", 2: "B", 3: "G", 4: "D", 5: "A", 6: "E" }
@@ -74,6 +76,8 @@ const Controls = () => {
         setSelectedNotes([])
     }
 
+    
+
     return (
         <SelectedNotesContext.Provider value={{
             selectedNotes, setSelectedNotes, modeNotes,
@@ -111,7 +115,7 @@ const Controls = () => {
 
                     <ToggleButton value="web" 
                         style={{backgroundColor: openView ? 'grey' : 'transparent'}}
-                        onChange={(e) => setOpenView(!openView)}>
+                        onChange={() => setOpenView(!openView)}>
                             Open View
                     </ToggleButton>
 
@@ -120,12 +124,17 @@ const Controls = () => {
                 <div className={styles.fretboardHolder}>
                     {
                         Object.entries(stringSet)?.map((stringNotePairs) =>
-
                             <div key={stringNotePairs[0]} className={styles.stringMapping}>
-                                <form className={styles.openNotes}>
-                                    <select className={styles.openNoteSelector} value={stringNotePairs[1]} onChange={(e) => handleTunings(e, stringNotePairs[0])}>
+                                <p>{modeNotes.includes(stringNotePairs[1] ) ? 'O' : 'X'}</p>
+                                <form>
+                                    <select className={styles.openNoteSelector} 
+                                        style={{backgroundColor: modeNotes.includes(stringNotePairs[1]) ?
+                                                                    noteHexes[notes.indexOf(stringNotePairs[1])] : 'grey'}} 
+                                        value={stringNotePairs[1]} 
+                                        onChange={(e) => handleTunings(e, stringNotePairs[0])}
+                                    >
                                         {
-                                            notes?.map((note) => <option key={note} value={note} >{note}</option>)
+                                            notes?.map((note) => <option style={{backgroundColor: 'white'}} key={note} value={note}>{note}</option>)
                                         }
                                     </select>
                                 </form>
@@ -136,6 +145,7 @@ const Controls = () => {
                                     stringNum={stringNotePairs[0]}
                                     openNote={stringNotePairs[1]}
                                     openView={openView}
+                                    noteHexes={noteHexes}
                                 />
                             </div>
                         )

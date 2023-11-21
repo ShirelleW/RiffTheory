@@ -5,7 +5,7 @@ import { Frets } from './Frets'
 import ChordGroupings from './ChordGroupings';
 
 
-const String = ({ stringNum, numOfStrings, numOfFrets, openNote, openView }) => {
+const String = ({ stringNum, numOfStrings, numOfFrets, openNote, openView, noteHexes }) => {
 
 
   const fretNote = (currentNote) => {
@@ -36,6 +36,7 @@ const String = ({ stringNum, numOfStrings, numOfFrets, openNote, openView }) => 
         stringNoteLayout={stringNoteLayout}
         numOfFrets={numOfFrets}
         stringNum={stringNum}
+        noteHexes={noteHexes}
       /> : < ChordGroupings /> 
     }
     </div>
@@ -51,4 +52,5 @@ String.propTypes = {
   numOfFrets: PropTypes.number, 
   openNote: PropTypes.string,
   openView: PropTypes.bool,
+  noteHexes: PropTypes.array
 };
