@@ -3,6 +3,7 @@ import { useState } from 'react';
 import { notes } from '../Context/utils';
 import { chordTypes } from '../Context/utils';
 import { SelectedNotesContext } from '../Context/SelectedNotesContext';
+import ToggleButton from '@mui/material/ToggleButton';
 import String from './String';
 import styles from '../styles/Styles.module.css'
 import Slider from './Slider';
@@ -25,6 +26,7 @@ const Controls = () => {
     const [tutorialViewed, setTutorialViewed] = useState(false)
 
     const [tutorialSliderView, setTutorialSliderView] = useState(0)
+    const [openView, setOpenView] = useState(true)
 
     const handleStrings = (e) => {
         if (Number(e.target.value) < 6) {
@@ -76,7 +78,7 @@ const Controls = () => {
         <SelectedNotesContext.Provider value={{
             selectedNotes, setSelectedNotes, modeNotes,
             setTutorialViewed, setTutorialSliderView,
-            tutorialSliderView
+            tutorialSliderView, numOfFrets
         }}>
             <div className={styles.mainContainer}>
                 {/* EDIT TO TAKE IN WHOLE NUMBER */}
@@ -92,7 +94,7 @@ const Controls = () => {
                     </select>
                     <select className={styles.chordTypeSelector} onChange={(e) => handleChordTypeChange(e)}>
                         {
-                            Object.entries(chordTypes)?.map((type) => <option key={type} style={{backgroundColor: type[1] === null && 'silver'}} disabled={type[1] === null && true} value={type[0]}>{type[0]}</option>)
+                            Object.entries(chordTypes)?.map((type) => <option key={type} style={{ backgroundColor: type[1] === null && 'silver' }} disabled={type[1] === null && true} value={type[0]}>{type[0]}</option>)
                         }
                     </select>
                     <div className={tutorialViewed ? styles.sliderRangeInput : undefined} id={styles.sliderRangeNoAnim}>
@@ -104,7 +106,15 @@ const Controls = () => {
                             onChange={(e) => setSliderFretRange(e.target.value)} />
                         {(tutorialViewed && tutorialSliderView === 1) && <p>Drag right for wider range!</p>}
                     </div>
+
                     <button type='button' onClick={resetFretboard}>Reset</button>
+
+                    <ToggleButton value="web" 
+                        style={{backgroundColor: openView ? 'grey' : 'transparent'}}
+                        onChange={(e) => setOpenView(!openView)}>
+                            Open View
+                    </ToggleButton>
+
                 </form>
 
                 <div className={styles.fretboardHolder}>
@@ -125,6 +135,7 @@ const Controls = () => {
                                     numOfFrets={numOfFrets}
                                     stringNum={stringNotePairs[0]}
                                     openNote={stringNotePairs[1]}
+                                    openView={openView}
                                 />
                             </div>
                         )

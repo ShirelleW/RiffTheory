@@ -2,9 +2,10 @@ import React from 'react'
 import PropTypes from 'prop-types';
 import { notes } from '../Context/utils'
 import { Frets } from './Frets'
+import ChordGroupings from './ChordGroupings';
 
 
-const String = ({ stringNum, numOfStrings, numOfFrets, openNote }) => {
+const String = ({ stringNum, numOfStrings, numOfFrets, openNote, openView }) => {
 
 
   const fretNote = (currentNote) => {
@@ -27,12 +28,18 @@ const String = ({ stringNum, numOfStrings, numOfFrets, openNote }) => {
   const stringNoteLayout = stringLayout()
 
   return (
+    <div>
+    {
+      openView ? 
       <Frets
         numOfStrings={numOfStrings}
         stringNoteLayout={stringNoteLayout}
         numOfFrets={numOfFrets}
         stringNum={stringNum}
-      />
+      /> : < ChordGroupings /> 
+    }
+    </div>
+      
   )
 }
 
@@ -43,4 +50,5 @@ String.propTypes = {
   numOfStrings: PropTypes.number,
   numOfFrets: PropTypes.number, 
   openNote: PropTypes.string,
+  openView: PropTypes.bool,
 };
