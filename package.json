@@ -3,7 +3,7 @@
   "author": "Shirelle Winecoff",
   "private": true,
   "scripts": {
-    "build": "next build",
+    "build": "cross-env NODE_OPTIONS=--enable-source-maps next build",
     "dev": "next dev",
     "start": "next start"
   },
@@ -17,6 +17,7 @@
     "node": ">=18"
   },
   "devDependencies": {
+    "cross-env": "^7.0.3",
     "eslint": "^8.53.0",
     "eslint-plugin-react": "^7.33.2",
     "prop-types": "^15.8.1"

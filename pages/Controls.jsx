@@ -72,12 +72,9 @@ const Controls = () => {
         setSelectedNotes([])
     }
 
-    let noteHexes = ['#57C4E5', '#C8F0D8', '#ffff00', '#F97068', '#FFFFFC', '#F77F00', '#FCBF49', '#EAE2B7', '#2C6E49', '#59FFA0', '#DB222A', '#C47AC0']
-
     return (
         <SelectedNotesContext.Provider value={{
-            selectedNotes, setSelectedNotes,
-            noteHexes, modeNotes,
+            selectedNotes, setSelectedNotes, modeNotes,
             setTutorialViewed, setTutorialSliderView,
             tutorialSliderView
         }}>
@@ -90,15 +87,15 @@ const Controls = () => {
                     <input type="text" onChange={e => setNumOfFrets(e.target.value <= 24 && e.target.value >= 12 ? e.target.value : 12)} />
                     <select className={styles.keySelector} onChange={(e) => handleKeyChange(e)}>
                         {
-                            notes.map((note) => <option key={note} value={note}>{note}</option>)
+                            notes?.map((note) => <option key={note} value={note}>{note}</option>)
                         }
                     </select>
                     <select className={styles.chordTypeSelector} onChange={(e) => handleChordTypeChange(e)}>
                         {
-                            Object.entries(chordTypes).map((type) => <option key={type} style={{backgroundColor: type[1] === null && 'silver'}} disabled={type[1] === null && true} value={type[0]}>{type[0]}</option>)
+                            Object.entries(chordTypes)?.map((type) => <option key={type} style={{backgroundColor: type[1] === null && 'silver'}} disabled={type[1] === null && true} value={type[0]}>{type[0]}</option>)
                         }
                     </select>
-                    <div className={tutorialViewed && styles.sliderRangeInput} id={styles.sliderRangeNoAnim}>
+                    <div className={tutorialViewed ? styles.sliderRangeInput : undefined} id={styles.sliderRangeNoAnim}>
                         <input type="range"
                             name="sliderRange"
                             min="0"
@@ -112,13 +109,13 @@ const Controls = () => {
 
                 <div className={styles.fretboardHolder}>
                     {
-                        Object.entries(stringSet).map((stringNotePairs) =>
+                        Object.entries(stringSet)?.map((stringNotePairs) =>
 
                             <div key={stringNotePairs[0]} className={styles.stringMapping}>
                                 <form className={styles.openNotes}>
                                     <select className={styles.openNoteSelector} value={stringNotePairs[1]} onChange={(e) => handleTunings(e, stringNotePairs[0])}>
                                         {
-                                            notes.map((note) => <option key={note} value={note} >{note}</option>)
+                                            notes?.map((note) => <option key={note} value={note} >{note}</option>)
                                         }
                                     </select>
                                 </form>
@@ -127,7 +124,7 @@ const Controls = () => {
                                     numOfStrings={numOfStrings}
                                     numOfFrets={numOfFrets}
                                     stringNum={stringNotePairs[0]}
-                                    currentString={stringNotePairs}
+                                    openNote={stringNotePairs[1]}
                                 />
                             </div>
                         )
