@@ -1,11 +1,10 @@
-import React from 'react'
+import React, {useContext} from 'react'
 import PropTypes from 'prop-types';
 import { notes } from '../Context/utils'
-import { Frets } from './Frets'
-import ChordGroupings from './ChordGroupings';
+import { SelectedNotesContext } from '../Context/SelectedNotesContext'
+import styles from '../styles/Styles.module.css'
 
-
-const String = ({ stringNum, numOfStrings, numOfFrets, openNote, openView, noteHexes }) => {
+const String = ({ stringNum, numOfStrings, numOfFrets, openNote, noteHexes }) => {
 
 
   const fretNote = (currentNote) => {
@@ -27,20 +26,57 @@ const String = ({ stringNum, numOfStrings, numOfFrets, openNote, openView, noteH
 
   const stringNoteLayout = stringLayout()
 
+  const { selectedNotes, setSelectedNotes, modeNotes } = useContext(SelectedNotesContext)
+
+  const fretInlayString = Math.floor(numOfStrings / 2)
+  const fretInlayFret = [2, 4, 6, 8, 11, 14, 16, 18, 20, 23]
+
+  const toggleNoteView = (note) => {
+      if (selectedNotes?.includes(note)) {
+          setSelectedNotes(selectedNotes?.filter((ele) => ele != note))
+      } else (
+          setSelectedNotes([...selectedNotes, note])
+      )
+  }
+
   return (
-    <div>
-    {
-      openView ? 
-      <Frets
-        numOfStrings={numOfStrings}
-        stringNoteLayout={stringNoteLayout}
-        numOfFrets={numOfFrets}
-        stringNum={stringNum}
-        noteHexes={noteHexes}
-      /> : < ChordGroupings /> 
-    }
-    </div>
-      
+        <div className={styles.string}>
+            {
+                stringNoteLayout?.map((note, i) =>
+                    modeNotes?.includes(note) ? (
+                        fretInlayFret?.includes(i) && Number(stringNum) === fretInlayString ?
+                            (
+                                <div className={styles.individualNotes}>
+                                    <p style={{
+                                        backgroundColor: noteHexes[notes.indexOf(note)],
+                                        'opacity': 0.6
+                                    }} id={styles.noteToggle}>{note}</p>
+                                    <div className={styles.fretInlay}></div>
+                                </div>
+                            ) :
+                            (
+                                <div className={styles.individualNotes}>
+                                    <p style={{
+                                        backgroundColor: noteHexes[notes.indexOf(note)],
+                                        'opacity': 0.6
+                                    }} id={styles.noteToggle}>{note}</p>
+                                </div>
+                            )
+                    )
+                        :
+                        fretInlayFret?.includes(i) && Number(stringNum) === fretInlayString ?
+                            (
+                                <div onClick={() => toggleNoteView(note)} className={styles.individualNotes}>
+                                    <p style={{ backgroundColor: noteHexes[notes.indexOf(note)], 'opacity': 0.6 }} id={selectedNotes?.includes(note) ? styles.noteToggle : undefined}>{selectedNotes?.includes(note) && note}</p>
+                                    <div className={styles.fretInlay}></div>
+                                </div>
+                            ) :
+                            <div onClick={() => toggleNoteView(note)} className={styles.individualNotes}>
+                                <p style={{ backgroundColor: noteHexes[notes.indexOf(note)], 'opacity': 0.6 }} id={selectedNotes?.includes(note) ? styles.noteToggle : undefined}>{selectedNotes?.includes(note) && note}</p>
+                            </div>
+                )
+            }
+        </div>
   )
 }
 

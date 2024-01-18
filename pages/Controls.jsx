@@ -6,7 +6,6 @@ import { SelectedNotesContext } from '../Context/SelectedNotesContext';
 import ToggleButton from '@mui/material/ToggleButton';
 import String from './String';
 import styles from '../styles/Styles.module.css'
-import Slider from './Slider';
 
 const Controls = () => {
 
@@ -22,10 +21,6 @@ const Controls = () => {
         1: "E", 2: "B", 3: "G", 4: "D", 5: "A", 6: "E"
     })
 
-    const [sliderFretRange, setSliderFretRange] = useState(6)
-    const [tutorialViewed, setTutorialViewed] = useState(false)
-
-    const [tutorialSliderView, setTutorialSliderView] = useState(0)
     const [openView, setOpenView] = useState(true)
 
     const [noteHexes] = useState(['#57C4E5', '#C8F0D8', '#ffff00', '#F97068', '#DC493A', '#F77F00', '#FCBF49', '#EAE2B7', '#2C6E49', '#59FFA0', '#DB222A', '#C47AC0'])
@@ -76,21 +71,21 @@ const Controls = () => {
         setSelectedNotes([])
     }
 
-    
+
 
     return (
         <SelectedNotesContext.Provider value={{
-            selectedNotes, setSelectedNotes, modeNotes,
-            setTutorialViewed, setTutorialSliderView,
-            tutorialSliderView, numOfFrets
+            selectedNotes, setSelectedNotes, modeNotes, numOfFrets
         }}>
             <div className={styles.mainContainer}>
                 {/* EDIT TO TAKE IN WHOLE NUMBER */}
                 <form className={styles.controls} action="">
                     <label htmlFor="numOfStrings">Number of Strings (6-12): </label>
                     <input type="text" onChange={handleStrings} />
+
                     <label htmlFor="numOfFrets">Number of Frets (12-24): </label>
                     <input type="text" onChange={e => setNumOfFrets(e.target.value <= 24 && e.target.value >= 12 ? e.target.value : 12)} />
+
                     <select className={styles.keySelector} onChange={(e) => handleKeyChange(e)}>
                         {
                             notes?.map((note) => <option key={note} value={note}>{note}</option>)
@@ -101,58 +96,46 @@ const Controls = () => {
                             Object.entries(chordTypes)?.map((type) => <option key={type} style={{ backgroundColor: type[1] === null && 'silver' }} disabled={type[1] === null && true} value={type[0]}>{type[0]}</option>)
                         }
                     </select>
-                    <div className={tutorialViewed ? styles.sliderRangeInput : undefined} id={styles.sliderRangeNoAnim}>
-                        <input type="range"
-                            name="sliderRange"
-                            min="0"
-                            max={numOfFrets}
-                            step={1}
-                            onChange={(e) => setSliderFretRange(e.target.value)} />
-                        {(tutorialViewed && tutorialSliderView === 1) && <p>Drag right for wider range!</p>}
-                    </div>
-
-                    <button type='button' onClick={resetFretboard}>Reset</button>
-
-                    <ToggleButton value="web" 
-                        style={{backgroundColor: openView ? 'grey' : 'transparent'}}
-                        onChange={() => setOpenView(!openView)}>
-                            Open View
-                    </ToggleButton>
-
                 </form>
 
                 <div className={styles.fretboardHolder}>
-                    {
-                        Object.entries(stringSet)?.map((stringNotePairs) =>
-                            <div key={stringNotePairs[0]} className={styles.stringMapping}>
-                                <p>{modeNotes.includes(stringNotePairs[1] ) ? 'O' : 'X'}</p>
-                                <form>
-                                    <select className={styles.openNoteSelector} 
-                                        style={{backgroundColor: modeNotes.includes(stringNotePairs[1]) ?
-                                                                    noteHexes[notes.indexOf(stringNotePairs[1])] : 'grey'}} 
-                                        value={stringNotePairs[1]} 
-                                        onChange={(e) => handleTunings(e, stringNotePairs[0])}
-                                    >
-                                        {
-                                            notes?.map((note) => <option style={{backgroundColor: 'white'}} key={note} value={note}>{note}</option>)
-                                        }
-                                    </select>
-                                </form>
 
-                                <String
-                                    numOfStrings={numOfStrings}
-                                    numOfFrets={numOfFrets}
-                                    stringNum={stringNotePairs[0]}
-                                    openNote={stringNotePairs[1]}
-                                    openView={openView}
-                                    noteHexes={noteHexes}
-                                />
-                            </div>
-                        )
-                    }
-                    <Slider
-                        numOfStrings={numOfStrings}
-                        sliderFretRange={sliderFretRange} />
+                    <div className={styles.fretboard}>
+                        {
+                            Object.entries(stringSet)?.map((stringNotePairs) =>
+
+                                <div className={styles.stringMapping} key={stringNotePairs[0]}>
+
+                                    <p id={styles.openNotePlayable}>{modeNotes.includes(stringNotePairs[1]) ? 'O' : 'X'}</p>
+
+                                    <form>
+                                        <select className={styles.openNoteSelector}
+                                            style={{
+                                                backgroundColor: modeNotes.includes(stringNotePairs[1]) ?
+                                                    noteHexes[notes.indexOf(stringNotePairs[1])] : 'grey'
+                                            }}
+                                            value={stringNotePairs[1]}
+                                            onChange={(e) => handleTunings(e, stringNotePairs[0])}
+                                        >
+                                            {
+                                                notes?.map((note) => <option style={{ backgroundColor: 'white' }} key={note} value={note}>{note}</option>)
+                                            }
+                                        </select>
+                                    </form>
+
+                                    <String
+                                        numOfStrings={numOfStrings}
+                                        numOfFrets={numOfFrets}
+                                        stringNum={stringNotePairs[0]}
+                                        openNote={stringNotePairs[1]}
+                                        openView={openView}
+                                        noteHexes={noteHexes}
+                                    />
+                                </div>
+                            )
+                        }
+                    </div>
+
                 </div>
             </div>
         </SelectedNotesContext.Provider >
