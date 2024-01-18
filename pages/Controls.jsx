@@ -3,7 +3,6 @@ import { useState } from 'react';
 import { notes } from '../Context/utils';
 import { chordTypes } from '../Context/utils';
 import { SelectedNotesContext } from '../Context/SelectedNotesContext';
-import ToggleButton from '@mui/material/ToggleButton';
 import String from './String';
 import styles from '../styles/Styles.module.css'
 
