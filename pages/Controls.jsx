@@ -20,7 +20,6 @@ const Controls = () => {
         1: "E", 2: "B", 3: "G", 4: "D", 5: "A", 6: "E"
     })
 
-    const [openView, setOpenView] = useState(true)
 
     const [noteHexes] = useState(['#57C4E5', '#C8F0D8', '#ffff00', '#F97068', '#DC493A', '#F77F00', '#FCBF49', '#EAE2B7', '#2C6E49', '#59FFA0', '#DB222A', '#C47AC0'])
 
@@ -66,7 +65,6 @@ const Controls = () => {
     }
 
     const resetFretboard = () => {
-        setModeNotes([])
         setSelectedNotes([])
     }
 
@@ -95,6 +93,10 @@ const Controls = () => {
                             Object.entries(chordTypes)?.map((type) => <option key={type} style={{ backgroundColor: type[1] === null && 'silver' }} disabled={type[1] === null && true} value={type[0]}>{type[0]}</option>)
                         }
                     </select>
+                    
+                    <button type='button' onClick={resetFretboard}>
+                        Reset Selected Notes
+                    </button>
                 </form>
 
                 <div className={styles.fretboardHolder}>
@@ -127,7 +129,6 @@ const Controls = () => {
                                         numOfFrets={numOfFrets}
                                         stringNum={stringNotePairs[0]}
                                         openNote={stringNotePairs[1]}
-                                        openView={openView}
                                         noteHexes={noteHexes}
                                     />
                                 </div>
