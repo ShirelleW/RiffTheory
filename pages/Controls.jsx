@@ -3,7 +3,7 @@ import { useState } from 'react';
 import { notes } from '../Context/utils';
 import { chordTypes } from '../Context/utils';
 import { SelectedNotesContext } from '../Context/SelectedNotesContext';
-import String from './String';
+import String from '../src/String';
 import styles from '../styles/Styles.module.css'
 
 const Controls = () => {
@@ -69,7 +69,6 @@ const Controls = () => {
     }
 
 
-
     return (
         <SelectedNotesContext.Provider value={{
             selectedNotes, setSelectedNotes, modeNotes, numOfFrets
@@ -93,7 +92,7 @@ const Controls = () => {
                             Object.entries(chordTypes)?.map((type) => <option key={type} style={{ backgroundColor: type[1] === null && 'silver' }} disabled={type[1] === null && true} value={type[0]}>{type[0]}</option>)
                         }
                     </select>
-                    
+
                     <button type='button' onClick={resetFretboard}>
                         Reset Selected Notes
                     </button>
@@ -123,14 +122,18 @@ const Controls = () => {
                                             }
                                         </select>
                                     </form>
+                                    <div className={styles.fretboard_grid}>
+                                        <hr className={styles.hr}
+                                            style={{ height: parseInt(stringNotePairs[0]) * 0.44 + 'px' }} />
+                                        <String
+                                            numOfStrings={numOfStrings}
+                                            numOfFrets={numOfFrets}
+                                            stringNum={stringNotePairs[0]}
+                                            openNote={stringNotePairs[1]}
+                                            noteHexes={noteHexes}
+                                        />
+                                    </div>
 
-                                    <String
-                                        numOfStrings={numOfStrings}
-                                        numOfFrets={numOfFrets}
-                                        stringNum={stringNotePairs[0]}
-                                        openNote={stringNotePairs[1]}
-                                        noteHexes={noteHexes}
-                                    />
                                 </div>
                             )
                         }
