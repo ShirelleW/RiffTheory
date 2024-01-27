@@ -52,7 +52,7 @@
     grid-row: 1;
     display: flex;
     align-items: center;
-    border-left: 5px solid black;
+    border-left: 7px solid black;
 }
 
 .hr{
@@ -60,19 +60,18 @@
     grid-row: 1;
     place-self: center;
     z-index: 1;
-    background-color: black;
+    background-color: grey;
     width: 100%;
 }
 
 .individualNotes {
-    border-radius: 5%;
     height: max-content;
     width: max-content;
-    background-color: #efc3a8;
+    background-color: #775037;
     position: relative;
     width: 3vw;
     height: 7vh;
-    border-right: 4px solid rgb(204, 204, 204);
+    border-right: 8px ridge rgb(209, 205, 205);
     display: flex;
     justify-content: center;
     align-items: center;
