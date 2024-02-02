@@ -1,4 +1,4 @@
-# ***RiffTheory***
+# ***[RiffTheory](https://riff-theory.vercel.app/)***
 [A web app](https://riff-theory.vercel.app/) for guitarists who want to sharpen their music theory.
 
 ![Preview of Fretboard](/pics/RTfretboard.png)
