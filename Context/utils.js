@@ -1,4 +1,5 @@
 export const notes = ["C", "Db", "D", "Eb", "E", "F", "Gb", "G", "Ab", "A", "Bb", "B"];
+export const notesSharp = ["C", "C#", "D", "D#", "E", "F", "F#", "G", "G#", "A", "A#", "B"];
 export const frets = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23]
 
 // Steps
@@ -69,6 +70,7 @@ const majorSeventhChord = (root) => {
 }
 export const chordTypes = {
     "Popular": null,
+    "Major Scale": undefined,
     "Blues Scale": undefined,
     "Minor Pentatonic Scale": undefined,
     "Major Pentatonic Scale": undefined,

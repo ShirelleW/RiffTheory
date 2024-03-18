@@ -1,7 +1,7 @@
 import React from 'react'
 import axios from 'axios';
 import { useState } from 'react';
-import { notes } from '../Context/utils';
+import { notes, notesSharp } from '../Context/utils';
 import { chordTypes } from '../Context/utils';
 import { SelectedNotesContext } from '../Context/SelectedNotesContext';
 import String from '../src/String';
@@ -14,7 +14,7 @@ const Controls = () => {
     const [selectedNotes, setSelectedNotes] = useState([])
     const [modeNotes, setModeNotes] = useState(["C", "D", "E", "F", "G", "A", "B", "C"])
     const [keyChange, setKeyChange] = useState("C")
-    const [chordType, setChordType] = useState("Search By Key")
+    const [chordType, setChordType] = useState("Major Scale")
 
     const [numOfStrings, setNumOfStrings] = useState(6)
     const [numOfFrets, setNumOfFrets] = useState(12);
@@ -91,9 +91,11 @@ const Controls = () => {
         name = name.replace("#", "%23")
 
         try {
+            console.log(name)
             const response = await axios.get(`http://localhost:3002/api/scales/name/${name}`)
             setScaleData([response.data.scales])
             setModeNotes(response.data.scales.notesinscale.split(','))
+            console.log(modeNotes)
         } catch {
             setError(true)
         }
@@ -141,14 +143,18 @@ const Controls = () => {
                                     <form>
                                         <select className={styles.openNoteSelector}
                                             style={{
-                                                backgroundColor: modeNotes.includes(stringNotePairs[1]) ?
-                                                    noteHexes[notes.indexOf(stringNotePairs[1])] : 'grey'
+                                                backgroundColor: modeNotes.includes(stringNotePairs[1]) 
+                                                ? modeNotes.join('').includes("#") 
+                                                ?   noteHexes[notesSharp.indexOf(stringNotePairs[1])]
+                                                :   noteHexes[notes.indexOf(stringNotePairs[1])] : 'grey'
                                             }}
                                             value={stringNotePairs[1]}
                                             onChange={(e) => handleTunings(e, stringNotePairs[0])}
                                         >
                                             {
-                                                notes?.map((note) => <option style={{ backgroundColor: 'white' }} key={note} value={note}>{note}</option>)
+                                                modeNotes.join('').includes("#") 
+                                                ? notesSharp.map((note) => <option style={{ backgroundColor: 'white' }} key={note} value={note}>{note}</option>) 
+                                                : notes.map((note) => <option style={{ backgroundColor: 'white' }} key={note} value={note}>{note}</option>)
                                             }
                                         </select>
                                     </form>
@@ -161,6 +167,7 @@ const Controls = () => {
                                             stringNum={stringNotePairs[0]}
                                             openNote={stringNotePairs[1]}
                                             noteHexes={noteHexes}
+                                            scaleNotes={modeNotes}
                                         />
                                     </div>
 
