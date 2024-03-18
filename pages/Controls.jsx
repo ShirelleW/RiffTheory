@@ -1,4 +1,5 @@
 import React from 'react'
+import axios from 'axios';
 import { useState } from 'react';
 import { notes } from '../Context/utils';
 import { chordTypes } from '../Context/utils';
@@ -8,10 +9,12 @@ import styles from '../styles/Styles.module.css'
 
 const Controls = () => {
 
+    const [scaleData, setScaleData] = useState([])
+    const [error, setError] = useState(false)
     const [selectedNotes, setSelectedNotes] = useState([])
     const [modeNotes, setModeNotes] = useState(["C", "D", "E", "F", "G", "A", "B", "C"])
     const [keyChange, setKeyChange] = useState("C")
-    const [chordType, setChordType] = useState("Major Scale")
+    const [chordType, setChordType] = useState("Search By Key")
 
     const [numOfStrings, setNumOfStrings] = useState(6)
     const [numOfFrets, setNumOfFrets] = useState(12);
@@ -56,19 +59,48 @@ const Controls = () => {
 
     const handleKeyChange = (e) => {
         setKeyChange(e.target.value)
-        setModeNotes(chordTypes[chordType](e.target.value))
+        // setModeNotes(chordTypes[chordType](e.target.value))
     }
 
     const handleChordTypeChange = (e) => {
         setChordType(e.target.value)
-        setModeNotes(chordTypes[e.target.value](keyChange))
+        // setModeNotes(chordTypes[e.target.value](keyChange))
     }
 
     const resetFretboard = () => {
         setSelectedNotes([])
     }
 
+    const scaleSearch = async () => {
+        try {
+            if (chordType === "Search By Key") {
+                const response = await axios.get(`http://localhost:3002/api/scales/tonic/${keyChange}`)
+                setScaleData(response.data.scales)
+            } else {
+                const response = await axios.get(`http://localhost:3002/api/scales/tonicandname/${keyChange}/${chordType}`)
+                setScaleData(response.data.scales)
+            }
 
+        } catch {
+            setError(true)
+        }
+
+    }
+
+    const scaleSearchByKey = async (name) => {
+        name = name.replace("#", "%23")
+
+        try {
+            const response = await axios.get(`http://localhost:3002/api/scales/name/${name}`)
+            setScaleData([response.data.scales])
+
+            setModeNotes(response.data.scales.notesinscale.split(','))
+        } catch {
+            setError(true)
+        }
+    }
+
+    console.log(modeNotes)
     return (
         <SelectedNotesContext.Provider value={{
             selectedNotes, setSelectedNotes, modeNotes, numOfFrets
@@ -92,7 +124,7 @@ const Controls = () => {
                             Object.entries(chordTypes)?.map((type) => <option key={type} style={{ backgroundColor: type[1] === null && 'silver' }} disabled={type[1] === null && true} value={type[0]}>{type[0]}</option>)
                         }
                     </select>
-
+                    <button type='button' onClick={scaleSearch}>Search</button>
                     <button type='button' onClick={resetFretboard}>
                         Reset Selected Notes
                     </button>
@@ -138,11 +170,18 @@ const Controls = () => {
                             )
                         }
                     </div>
-
+                    <div>
+                        {
+                            scaleData.map((scale) => <p key={scale.name}>
+                                <button type='button' onClick={() => scaleSearchByKey(scale.name)}>{scale.name}</button>
+                            </p>)
+                        }
+                    </div>
                 </div>
+
+
             </div>
         </SelectedNotesContext.Provider >
     )
 }
-
 export default Controls

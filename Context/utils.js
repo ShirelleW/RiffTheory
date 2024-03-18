@@ -12,7 +12,7 @@ const majorThird = 2 * whole
 const perfectFourth = (2 * whole) + half
 const perfectFifth = (3 * whole) + half
 const minorSixth = 4 * whole
-const majorSixth = (4 * whole) + half 
+const majorSixth = (4 * whole) + half
 const minorSeventh = 5 * whole
 const majorSeventh = (5 * whole) + half
 
@@ -26,21 +26,21 @@ const getFullScale = (root) => {
 
 const getMajorScale = (root) => {
     const tempScale = getFullScale(root)
-    const majorScale = [root, tempScale[majorSecond], tempScale[majorThird], tempScale[perfectFourth], tempScale[perfectFifth], 
-                            tempScale[majorSixth], tempScale[majorSeventh]]
+    const majorScale = [root, tempScale[majorSecond], tempScale[majorThird], tempScale[perfectFourth], tempScale[perfectFifth],
+        tempScale[majorSixth], tempScale[majorSeventh]]
     return majorScale
 }
 
 const getMinorScale = (root) => {
     const tempScale = getFullScale(root)
     const minorScale = [root, tempScale[majorSecond], tempScale[minorThird], tempScale[perfectFourth], tempScale[perfectFifth],
-                            tempScale[minorSixth], tempScale[minorSeventh]]
+        tempScale[minorSixth], tempScale[minorSeventh]]
     return minorScale
 }
 
 const majorChord = (root) => {
     const majorScale = getMajorScale(root)
-     // 1, 3, 5 off major scale
+    // 1, 3, 5 off major scale
     const majorTriad = [root, majorScale[2], majorScale[4]]
     return majorTriad
 }
@@ -68,9 +68,60 @@ const majorSeventhChord = (root) => {
     return majorSevChord
 }
 export const chordTypes = {
+    "Search All By Key": null,
+    "Search By Key": undefined,
+    "Scale Type": null,
+    "Major": undefined,
+    "Minor": undefined, 
+
     "Scales": null,
-    "Major Scale": getMajorScale,
-    "Natural Minor Scale": getMinorScale,
+    'Lydian dominant': undefined,
+    'Natural minor': undefined,
+    'Algerian': undefined,
+    'Altered': undefined,
+    'Augmented': undefined,
+    'Bebop dominant': undefined,
+    'Blues': undefined,
+    'Chromatic': undefined,
+    'Dorian mode': undefined,
+    'Double harmonic': undefined,
+    'Enigmatic': undefined,
+    'Flamenco mode': undefined,
+    'Gypsy': undefined,
+    'Half diminished': undefined,
+    'Harmonic major': undefined,
+    'Harmonic minor': undefined,
+    'Hirajoshi': undefined,
+    'Hungarian minor': undefined,
+    'Hungarian major': undefined,
+    'In': undefined,
+    'Insen': undefined,
+    'Major': undefined,
+    'Istrian': undefined,
+    'Iwato': undefined,
+    'Locrian mode': undefined,
+    'Lydian augmented': undefined,
+    'Lydian diminished': undefined,
+    'Lydian mode': undefined,
+    'Major bebop': undefined,
+    'Major Locrian': undefined,
+    'Major pentatonic': undefined,
+    'Melodic minor': undefined,
+    'Melodic minor': undefined,
+    'Minor pentatonic': undefined,
+    'Adonai malakh mode': undefined,
+    'Neapolitan major': undefined,
+    'Neapolitan minor': undefined,
+    'Persian': undefined,
+    'Phrygian dominant': undefined,
+    'Phrygian mode': undefined,
+    'Prometheus': undefined,
+    'Scale of harmonics': undefined,
+    'Tritone': undefined,
+    'Two-semitone tritone': undefined,
+    'Ukrainian Dorian': undefined,
+    'Whole tone': undefined,
+    'Yo': undefined,
 
     "Major Chords": null,
     "Major Triad": majorChord,
@@ -80,4 +131,3 @@ export const chordTypes = {
     "Minor Triad": minorChord,
     "Minor 7th": minorSeventhChord,
 }
-
