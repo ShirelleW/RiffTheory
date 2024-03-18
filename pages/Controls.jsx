@@ -93,14 +93,12 @@ const Controls = () => {
         try {
             const response = await axios.get(`http://localhost:3002/api/scales/name/${name}`)
             setScaleData([response.data.scales])
-
             setModeNotes(response.data.scales.notesinscale.split(','))
         } catch {
             setError(true)
         }
     }
 
-    console.log(modeNotes)
     return (
         <SelectedNotesContext.Provider value={{
             selectedNotes, setSelectedNotes, modeNotes, numOfFrets
