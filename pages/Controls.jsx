@@ -3,6 +3,7 @@ import { useState } from 'react';
 import { notes, notesSharp } from '../Context/utils';
 import { SelectedNotesContext } from '../Context/SelectedNotesContext';
 import StringFretModal from '../src/StringFretModal';
+import { Button } from '@mui/material';
 import ScaleModal from '../src/ScaleModal';
 import String from '../src/String';
 import styles from '../styles/Styles.module.css'
@@ -39,46 +40,8 @@ const Controls = () => {
 
     }
 
-    const handleKeyChange = (e) => {
-        setKeyChange(e.target.value)
-        // setModeNotes(chordTypes[chordType](e.target.value))
-    }
-
-    const handleChordTypeChange = (e) => {
-        setChordType(e.target.value)
-        // setModeNotes(chordTypes[e.target.value](keyChange))
-    }
-
     const resetFretboard = () => {
         setSelectedNotes([])
-    }
-
-    const scaleSearch = async () => {
-        try {
-            if (chordType === "Search By Key") {
-                const response = await axios.get(`http://localhost:3002/api/scales/tonic/${keyChange}`)
-                setScaleData(response.data.scales)
-            } else {
-                const response = await axios.get(`http://localhost:3002/api/scales/tonicandname/${keyChange}/${chordType}`)
-                setScaleData(response.data.scales)
-            }
-
-        } catch {
-            setError(true)
-        }
-
-    }
-
-    const scaleSearchByKey = async (name) => {
-        name = name.replace("#", "%23")
-
-        try {
-            const response = await axios.get(`http://localhost:3002/api/scales/name/${name}`)
-            setScaleData([response.data.scales])
-            setModeNotes(response.data.scales.notesinscale.split(','))
-        } catch {
-            setError(true)
-        }
     }
 
     return (
@@ -136,10 +99,12 @@ const Controls = () => {
                                             scaleNotes={modeNotes}
                                         />
                                     </div>
-
                                 </div>
                             )
                         }
+                        <Button type='button' onClick={resetFretboard}>
+                            Reset Selected Notes
+                        </Button>
                     </div>
                 </div>
 
