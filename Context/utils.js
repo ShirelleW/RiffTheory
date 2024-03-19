@@ -63,9 +63,7 @@ const minorSeventhChord = (root) => {
 const majorSeventhChord = (root) => {
     const majorScale = getMajorScale(root)
     // 1, 3, 5 , 7 off minor scale
-    console.log(majorScale)
     const majorSevChord = [root, majorScale[2], majorScale[4], majorScale[6]]
-    console.log(majorSevChord)
     return majorSevChord
 }
 export const chordTypes = {

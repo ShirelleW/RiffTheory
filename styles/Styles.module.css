@@ -1,11 +1,57 @@
 .mainContainer {
     display: flex;
     flex-direction: column;
-    /* align-items: left; */
+    align-items: center ;
     width: 100vw;
     height: 100vh;
 }
 
+.controller{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    width: 12vw;
+}
+
+.stringfretmodal{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.box{
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    border-radius: 7%;
+    background-color: wheat;
+    width: fit-content;
+    height: fit-content;
+}
+.stringFretController{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: fit-content;
+    height: fit-content;
+}
+#modalExit{
+    color: black;
+    background-color: red;
+}
+.stringController{
+    height: 16vh;
+    width: 15vw;
+}
+#stringHelperText{
+    color: blue
+}
+.fretsController{
+    width: 15vw;
+    height: 16vh;
+}
+#fretHelperText{
+    color: blue;
+}
 .controls{
     display: flex;
     flex-direction: row;
