@@ -26,7 +26,7 @@ const StringFretModal = () => {
                     aria-labelledby="parent-modal-title"
                     aria-describedby="parent-modal-description"
                 >
-                    <Box className={styles.box}>
+                    <Box className={styles.stringsFretsBox}>
                         <CloseIcon id={styles.modalExit} onClick={handleClose}></CloseIcon>
                         <StringFretController />
                     </Box>

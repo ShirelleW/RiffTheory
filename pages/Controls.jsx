@@ -1,22 +1,18 @@
 import React from 'react'
-import axios from 'axios';
 import { useState } from 'react';
 import { notes, notesSharp } from '../Context/utils';
 import { SelectedNotesContext } from '../Context/SelectedNotesContext';
 import StringFretModal from '../src/StringFretModal';
+import ScaleModal from '../src/ScaleModal';
 import String from '../src/String';
 import styles from '../styles/Styles.module.css'
 
 const Controls = () => {
 
-
-
-    const [scaleData, setScaleData] = useState([])
-    const [error, setError] = useState(false)
     const [selectedNotes, setSelectedNotes] = useState([])
     const [modeNotes, setModeNotes] = useState(["C", "D", "E", "F", "G", "A", "B", "C"])
     const [keyChange, setKeyChange] = useState("C")
-    const [chordType, setChordType] = useState("Major Scale")
+    const [scaleType, setScaleType] = useState("Major Scale")
 
     const [stringSet, setStringSet] = useState({
         1: "E", 2: "B", 3: "G", 4: "D", 5: "A", 6: "E"
@@ -87,36 +83,18 @@ const Controls = () => {
 
     return (
         <SelectedNotesContext.Provider value={{
-            selectedNotes, setSelectedNotes, modeNotes, numOfFrets, setNumOfStrings, setStringSet, setNumOfFrets
+            selectedNotes, setSelectedNotes, modeNotes, numOfFrets, setNumOfStrings, setStringSet, setNumOfFrets, setKeyChange, setScaleType, setModeNotes
         }}>
             <div className={styles.mainContainer}>
                 <StringFretModal
                     numOfStrings={numOfStrings}
                     numOfFrets={numOfFrets}
+                    scaleType={scaleType}
                 />
-                {/* EDIT TO TAKE IN WHOLE NUMBER */}
-                {/* <form className={styles.controls} action="">
-                    <label htmlFor="numOfStrings">Number of Strings (6-12): </label>
-                    <input type="text" onChange={handleStrings} />
-
-                    <label htmlFor="numOfFrets">Number of Frets (12-24): </label>
-                    <input type="text" onChange={e => setNumOfFrets(e.target.value <= 24 && e.target.value >= 12 ? e.target.value : 12)} />
-
-                    <select className={styles.keySelector} onChange={(e) => handleKeyChange(e)}>
-                        {
-                            notes?.map((note) => <option key={note} value={note}>{note}</option>)
-                        }
-                    </select>
-                    <select className={styles.chordTypeSelector} onChange={(e) => handleChordTypeChange(e)}>
-                        {
-                            Object.entries(chordTypes)?.map((type) => <option key={type} style={{ backgroundColor: type[1] === null && 'silver' }} disabled={type[1] === null && true} value={type[0]}>{type[0]}</option>)
-                        }
-                    </select>
-                    <button type='button' onClick={scaleSearch}>Search</button>
-                    <button type='button' onClick={resetFretboard}>
-                        Reset Selected Notes
-                    </button>
-                </form> */}
+                <ScaleModal
+                    keyChange={keyChange}
+                    scaleType={scaleType}
+                />
 
                 <div className={styles.fretboardHolder}>
 
@@ -161,13 +139,6 @@ const Controls = () => {
 
                                 </div>
                             )
-                        }
-                    </div>
-                    <div>
-                        {
-                            scaleData.map((scale) => <p key={scale.name}>
-                                <button type='button' onClick={() => scaleSearchByKey(scale.name)}>{scale.name}</button>
-                            </p>)
                         }
                     </div>
                 </div>
