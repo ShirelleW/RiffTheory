@@ -3,7 +3,7 @@ import { useState } from 'react';
 import { notes, notesSharp } from '../Context/utils';
 import { SelectedNotesContext } from '../Context/SelectedNotesContext';
 import StringFretModal from '../src/StringFretModal';
-import { Button } from '@mui/material';
+import { Button, Typography } from '@mui/material';
 import ScaleModal from '../src/ScaleModal';
 import String from '../src/String';
 import styles from '../styles/Styles.module.css'
@@ -22,7 +22,8 @@ const Controls = () => {
     const [numOfStrings, setNumOfStrings] = useState(6)
     const [numOfFrets, setNumOfFrets] = useState(12);
 
-
+    const [scaleSelected, setScaleSelected] = useState(false)
+    const [scaleData, setScaleData] = useState([])
 
 
     const [noteHexes] = useState(['#57C4E5', '#C8F0D8', '#ffff00', '#F97068', '#DC493A', '#F77F00', '#FCBF49', '#EAE2B7', '#2C6E49', '#59FFA0', '#DB222A', '#C47AC0'])
@@ -44,9 +45,10 @@ const Controls = () => {
         setSelectedNotes([])
     }
 
+    console.log(scaleData)
     return (
         <SelectedNotesContext.Provider value={{
-            selectedNotes, setSelectedNotes, modeNotes, numOfFrets, setNumOfStrings, setStringSet, setNumOfFrets, setKeyChange, setScaleType, setModeNotes
+            selectedNotes, setSelectedNotes, modeNotes, numOfFrets, setNumOfStrings, setStringSet, setNumOfFrets, setKeyChange, setScaleType, setModeNotes, setScaleSelected, setScaleData
         }}>
             <div className={styles.mainContainer}>
                 <StringFretModal
@@ -55,10 +57,16 @@ const Controls = () => {
                     scaleType={scaleType}
                 />
                 <ScaleModal
+                    scaleSelected={scaleSelected}
+                    scaleData={scaleData}
                     keyChange={keyChange}
                     scaleType={scaleType}
                 />
-
+                {scaleSelected &&
+                    <Typography variant="h5" component="h2">
+                         { scaleData[0].name } 
+                    </Typography>
+                }
                 <div className={styles.fretboardHolder}>
 
                     <div className={styles.fretboard}>

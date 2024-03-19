@@ -7,14 +7,12 @@ import { SelectedNotesContext } from '../Context/SelectedNotesContext';
 import PropTypes from 'prop-types'
 import styles from '../styles/Styles.module.css'
 
-const ScaleModal = ({ scaleType, keyChange }) => {
+const ScaleModal = ({ scaleType, keyChange, scaleData, scaleSelected }) => {
 
-    const [scaleData, setScaleData] = useState([])
     const [buttonClick, setButtonClicked] = useState(false)
-    const [scaleSelected, setScaleSelected] = useState(false)
     const [error, setError] = useState(false)
 
-    const { setModeNotes } = useContext(SelectedNotesContext)
+    const { setModeNotes, setScaleSelected, setScaleData } = useContext(SelectedNotesContext)
     const handleOpen = () => {
         setButtonClicked(true)
     }
@@ -101,5 +99,7 @@ export default ScaleModal
 
 ScaleModal.propTypes = {
     scaleType: PropTypes.string,
-    keyChange: PropTypes.string
+    keyChange: PropTypes.string,
+    scaleData: PropTypes.object,
+    scaleSelected: PropTypes.bool
 }
