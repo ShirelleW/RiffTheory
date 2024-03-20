@@ -100,6 +100,6 @@ export default ScaleModal
 ScaleModal.propTypes = {
     scaleType: PropTypes.string,
     keyChange: PropTypes.string,
-    scaleData: PropTypes.object,
+    scaleData: PropTypes.array,
     scaleSelected: PropTypes.bool
 }
