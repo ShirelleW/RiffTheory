@@ -32,7 +32,6 @@ const Controls = () => {
         setSelectedNotes([])
     }
 
-    console.log(scaleData)
     return (
         <SelectedNotesContext.Provider value={{
             selectedNotes, setSelectedNotes, modeNotes, numOfFrets, setNumOfStrings, setStringSet, setNumOfFrets, setKeyChange, setScaleType, setModeNotes, setScaleSelected, setScaleData

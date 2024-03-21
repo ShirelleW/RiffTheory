@@ -69,7 +69,6 @@ const ScaleModal = ({ scaleType, keyChange, scaleData, scaleSelected }) => {
         setSearchResultData(scaleData.slice(start, end))
     }
     const handleChange = (event, value) => {
-        console.log(value)
         setPage(value)
         fetchSearchResults(value)
     }
@@ -96,12 +95,15 @@ const ScaleModal = ({ scaleType, keyChange, scaleData, scaleSelected }) => {
                                 {
                                     searchResultData.map((scale) =>
                                         <Button
-                                            // style={{ backgroundColor: scaleSelected && 'rgb(148, 214, 148)' }}
+                                            style={
+                                                { backgroundColor: scaleSelected 
+                                                    && scale.name === scaleData[0].name 
+                                                    && 'rgb(148, 214, 148)' }}
                                             id={styles.searchResultsButtons}
                                             key={scale} type='button'
                                             variant="outlined"
                                             onClick={() => { scaleSearchByKey(scale.name); buttonClicked() }}>
-                                            {scale.name}
+                                            {scale.name} {console.log(scale)}
                                         </Button>
                                     )
                                 }
