@@ -65,7 +65,7 @@ const ScaleModal = ({ scaleType, keyChange, scaleData, scaleSelected }) => {
     const fetchSearchResults = (page) => {
         const start = (page * 10) - 9
         const end = (page * 10) + 1
-        
+
         setSearchResultData(scaleData.slice(start, end))
     }
     const handleChange = (event, value) => {
@@ -92,19 +92,25 @@ const ScaleModal = ({ scaleType, keyChange, scaleData, scaleSelected }) => {
                             <Button onClick={() => { scaleSearch(); resetSelectedScale() }} variant="contained">Search</Button>
                         </div>
                         <div className={styles.searchResults}>
-                            {
-                                searchResultData.map((scale) =>
-                                    <Button
-                                        style={{ backgroundColor: scaleSelected && 'rgb(148, 214, 148)' }}
-                                        id={styles.searchResultsButtons}
-                                        key={scale} type='button'
-                                        variant="outlined"
-                                        onClick={() => { scaleSearchByKey(scale.name); buttonClicked() }}>
-                                        {scale.name}
-                                    </Button>
-                                )
-                            }
-                            <Pagination count={Math.ceil(scaleData.length / 10)} page={page} onChange={handleChange} />
+                            <div className={styles.searchResultsContainer}>
+                                {
+                                    searchResultData.map((scale) =>
+                                        <Button
+                                            // style={{ backgroundColor: scaleSelected && 'rgb(148, 214, 148)' }}
+                                            id={styles.searchResultsButtons}
+                                            key={scale} type='button'
+                                            variant="outlined"
+                                            onClick={() => { scaleSearchByKey(scale.name); buttonClicked() }}>
+                                            {scale.name}
+                                        </Button>
+                                    )
+                                }
+                            </div>
+                            <div>
+                                {
+                                    scaleData.length > 10 && <Pagination count={Math.ceil(scaleData.length / 10)} page={page} onChange={handleChange} />
+                                }
+                            </div>
                         </div>
                     </Box>
                 </Modal>

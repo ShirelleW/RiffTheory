@@ -1,19 +1,21 @@
 @import url('https://fonts.googleapis.com/css2?family=PT+Sans:ital,wght@0,400;0,700;1,400;1,700&display=swap');
 
-.mainStyle{
+.mainStyle {
     background-color: #95A3A4;
 }
-.logo{
+
+.logo {
     width: 300px;
     height: 100px;
     background-image: url('../pics//rt-logo-gray.png');
     background-repeat: no-repeat;
     background-size: contain;
 }
+
 .mainContainer {
     display: flex;
     flex-direction: column;
-    align-items: center ;
+    align-items: center;
     width: 100vw;
     height: 100vh;
 }
@@ -25,58 +27,22 @@
     width: 12vw;
 } */
 
-#pickTitle{
+#pickTitle {
     color: black;
     font-weight: bold;
 }
-#pickTitle:hover{
+
+#pickTitle:hover {
     background-color: #89D1D6;
 }
 
-.stringfretmodal{
+.stringfretmodal {
     display: flex;
     justify-content: center;
     align-items: center;
 }
-.stringsFretsBox{
-    display: flex;
-    flex-direction: column;
-    align-items: flex-end;
-    border-radius: 7%;
-    background-color: #89D1D6;
-    width: fit-content;
-    height: fit-content;
-}
-.stringFretController{
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    width: fit-content;
-    height: fit-content;
-}
-#modalExit{
-    color: black;
-    background-color: red;
-}
-.stringController{
-    height: 16vh;
-    width: 15vw;
-}
-#stringHelperText{
-    color: blue
-}
-.fretsController{
-    width: 15vw;
-    height: 16vh;
-}
-#fretHelperText{
-    color: blue;
-}
-.scalesBox{
-    display: flex;
-    flex-direction: row;
-}
-.scalesSearchContainer{
+
+.stringsFretsBox {
     display: flex;
     flex-direction: column;
     align-items: flex-end;
@@ -85,7 +51,54 @@
     width: fit-content;
     height: fit-content;
 }
-.scaleSelectorController{
+
+.stringFretController {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: fit-content;
+    height: fit-content;
+}
+
+#modalExit {
+    color: black;
+    background-color: red;
+}
+
+.stringController {
+    height: 16vh;
+    width: 15vw;
+}
+
+#stringHelperText {
+    color: blue
+}
+
+.fretsController {
+    width: 15vw;
+    height: 16vh;
+}
+
+#fretHelperText {
+    color: blue;
+}
+
+.scalesBox {
+    display: flex;
+    flex-direction: row;
+}
+
+.scalesSearchContainer {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    border-radius: 7%;
+    background-color: rgba(255, 255, 255, 0.9);
+    width: fit-content;
+    height: fit-content;
+}
+
+.scaleSelectorController {
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -94,23 +107,26 @@
     height: fit-content;
 }
 
-.keyController{
+.keyController {
     width: 25vw;
     height: 16vh;
 
 }
-#keyHelperText{
+
+#keyHelperText {
     color: blue;
 }
-.scaleController{
+
+.scaleController {
     width: 25vw;
     height: 16vh;
 }
-#scaleHelperText{
-    color: blue;
-} 
 
-.searchResults{
+#scaleHelperText {
+    color: blue;
+}
+
+.searchResults {
     background-color: white;
     display: flex;
     flex-wrap: wrap;
@@ -118,13 +134,20 @@
     height: fit-content;
 }
 
-#searchResultsButtons{
+.searchResultsContainer {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+#searchResultsButtons {
     color: black;
     font-weight: bold;
     font-size: 13px;
-    flex: 1 0 calc(33.33% - 20px)
+    flex: 1 0 calc(33.33% - 20px);
+    height: 10vh;
 }
-.controls{
+
+.controls {
     display: flex;
     flex-direction: row;
     height: 20px;
@@ -136,13 +159,13 @@
     border-bottom: 1px solid black;
 }
 
-.fretboardHolder{
+.fretboardHolder {
     margin-top: 50px;
     display: flex;
     justify-content: space-evenly;
 }
 
-.fretboard{
+.fretboard {
     display: flex;
     flex-direction: column;
     height: max-content;
@@ -158,11 +181,11 @@
     width: max-content;
 }
 
-#openNotePlayable{
+#openNotePlayable {
     margin: 0px;
 }
 
-.fretboard_grid{
+.fretboard_grid {
     display: grid;
 }
 
@@ -174,7 +197,7 @@
     border-left: 7px solid black;
 }
 
-.hr{
+.hr {
     grid-column: 1;
     grid-row: 1;
     place-self: center;
