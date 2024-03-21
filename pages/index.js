@@ -1,9 +1,11 @@
 import React from 'react'
 import Controls from './Controls'
+import styles from '../styles/Styles.module.css'
 
 const index = () => {
   return (
-    <div>
+    <div className={styles.mainStyle}>
+        <div className={styles.logo}/>
         <Controls />
     </div>
 

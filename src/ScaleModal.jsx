@@ -1,5 +1,5 @@
 import React, { useState, useContext } from 'react'
-import { Button, Modal, Box } from '@mui/material'
+import { Button, Modal, Box, Pagination } from '@mui/material'
 import CloseIcon from '@mui/icons-material/Close'
 import axios from 'axios';
 import ScaleSelectorController from './ScaleSelectorController'
@@ -11,6 +11,9 @@ const ScaleModal = ({ scaleType, keyChange, scaleData, scaleSelected }) => {
 
     const [buttonClick, setButtonClicked] = useState(false)
     const [error, setError] = useState(false)
+
+    const [searchResultData, setSearchResultData] = useState([])
+    const [page, setPage] = useState(1)
 
     const { setModeNotes, setScaleSelected, setScaleData } = useContext(SelectedNotesContext)
     const handleOpen = () => {
@@ -26,9 +29,11 @@ const ScaleModal = ({ scaleType, keyChange, scaleData, scaleSelected }) => {
             if (scaleType === "Search By Key") {
                 const response = await axios.get(`http://localhost:3002/api/scales/tonic/${keyChange}`)
                 setScaleData(response.data.scales.sort())
+                setSearchResultData(response.data.scales.sort().slice(0, 10))
             } else {
                 const response = await axios.get(`http://localhost:3002/api/scales/tonicandname/${keyChange}/${scaleType}`)
                 setScaleData(response.data.scales.sort())
+                setSearchResultData(response.data.scales.sort().slice(0, 10))
             }
 
         } catch {
@@ -56,9 +61,22 @@ const ScaleModal = ({ scaleType, keyChange, scaleData, scaleSelected }) => {
     const resetSelectedScale = () => {
         setScaleSelected(false)
     }
+
+    const fetchSearchResults = (page) => {
+        const start = (page * 10) - 9
+        const end = (page * 10) + 1
+        
+        setSearchResultData(scaleData.slice(start, end))
+    }
+    const handleChange = (event, value) => {
+        console.log(value)
+        setPage(value)
+        fetchSearchResults(value)
+    }
+
     return (
         <div className={styles.modalController}>
-            <Button onClick={handleOpen}>Pick Your Scale</Button>
+            <Button onClick={handleOpen} id={styles.pickTitle}>2. Pick Your Scale</Button>
             {
                 buttonClick
                 && <Modal
@@ -71,21 +89,22 @@ const ScaleModal = ({ scaleType, keyChange, scaleData, scaleSelected }) => {
                         <div className={styles.scalesSearchContainer}>
                             <CloseIcon id={styles.modalExit} onClick={handleClose}></CloseIcon>
                             <ScaleSelectorController />
-                            <Button onClick={() => { scaleSearch(); resetSelectedScale()}} variant="contained">Search</Button>
+                            <Button onClick={() => { scaleSearch(); resetSelectedScale() }} variant="contained">Search</Button>
                         </div>
                         <div className={styles.searchResults}>
                             {
-                                scaleData.map((scale) =>
-                                    <Button 
-                                    style={{ backgroundColor: scaleSelected && 'rgb(148, 214, 148)' }} 
-                                    id={styles.searchResultsButtons} 
-                                    key={scale} type='button' 
-                                    variant="outlined"
-                                    onClick={() => { scaleSearchByKey(scale.name); buttonClicked() }}>
-                                            {scale.name}
+                                searchResultData.map((scale) =>
+                                    <Button
+                                        style={{ backgroundColor: scaleSelected && 'rgb(148, 214, 148)' }}
+                                        id={styles.searchResultsButtons}
+                                        key={scale} type='button'
+                                        variant="outlined"
+                                        onClick={() => { scaleSearchByKey(scale.name); buttonClicked() }}>
+                                        {scale.name}
                                     </Button>
                                 )
                             }
+                            <Pagination count={Math.ceil(scaleData.length / 10)} page={page} onChange={handleChange} />
                         </div>
                     </Box>
                 </Modal>

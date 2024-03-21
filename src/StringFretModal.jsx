@@ -17,7 +17,7 @@ const StringFretModal = () => {
     }
     return (
         <div className={styles.modalController}>
-            <Button onClick={handleOpen}>Customize Your Fretboard</Button>
+            <Button onClick={handleOpen} id={styles.pickTitle}>1. Customize Your Fretboard</Button>
             {
                 buttonClick
                 && <Modal
