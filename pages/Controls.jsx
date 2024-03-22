@@ -48,9 +48,15 @@ const Controls = () => {
                     keyChange={keyChange}
                     scaleType={scaleType}
                 />
+                {
+                    scaleData.length === 0 && 
+                    <Typography variant="h5" component="h2">
+                      C Major Scale
+                    </Typography>
+                }
                 {scaleSelected &&
                     <Typography variant="h5" component="h2">
-                        {scaleData[0].name}
+                      { scaleData[0].name }
                     </Typography>
                 }
                 <div className={styles.fretboardHolder}>
