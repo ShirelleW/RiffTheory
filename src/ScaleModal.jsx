@@ -103,7 +103,7 @@ const ScaleModal = ({ scaleType, keyChange, scaleData, scaleSelected }) => {
                                             key={scale.name} type='button'
                                             variant="outlined"
                                             onClick={() => { scaleSearchByKey(scale.name); buttonClicked() }}>
-                                            {scale.name} {console.log(scale)}
+                                            {scale.name}
                                         </Button>
                                     )
                                 }

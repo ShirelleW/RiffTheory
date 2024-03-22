@@ -32,6 +32,7 @@ const StringFretController = ({ numOfStrings, numOfFrets }) => {
             setNumOfStrings(Object.keys(userSet).length)
         }
     }
+
     return (
         <div className={styles.stringFretController}>
             <FormControl className={styles.stringController}>
@@ -39,7 +40,7 @@ const StringFretController = ({ numOfStrings, numOfFrets }) => {
                 <Select
                     labelId="num-of-strings-select-label"
                     label="Strings"
-                    value={numOfStrings}
+                    defaultValue={numOfStrings ?? ''}
                     onChange={handleStrings}
                 >
                     {
@@ -53,7 +54,7 @@ const StringFretController = ({ numOfStrings, numOfFrets }) => {
                 <Select
                     labelId="num-of-frets-select-label"
                     id="num-of-frets-label"
-                    value={numOfFrets}
+                    defaultValue={numOfFrets ?? ''}
                     label="Frets"
                     onChange={e => setNumOfFrets(e.target.value <= 24 && e.target.value >= 12 ? e.target.value : 12)}
                 >

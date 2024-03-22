@@ -64,7 +64,7 @@ const String = ({ stringNum, numOfStrings, numOfFrets, openNote, noteHexes, scal
                     modeNotes?.includes(note) ? (
                         fretInlayFret?.includes(i) && fretInlayString(i).includes(Number(stringNum)) ?
                             (
-                                <div key={note} className={styles.individualNotes}>
+                                <div key={i} className={styles.individualNotes}>
                                     <p style={
                                     { backgroundColor: scaleNotes.join('').includes("#")
                                     ? noteHexes[notesSharp.indexOf(note)]
@@ -74,7 +74,7 @@ const String = ({ stringNum, numOfStrings, numOfFrets, openNote, noteHexes, scal
                                 </div>
                             ) :
                             (
-                                <div key={note} className={styles.individualNotes}>
+                                <div key={i} className={styles.individualNotes}>
                                     <p style={
                                     { backgroundColor: scaleNotes.join('').includes("#")
                                     ? noteHexes[notesSharp.indexOf(note)]
@@ -86,7 +86,7 @@ const String = ({ stringNum, numOfStrings, numOfFrets, openNote, noteHexes, scal
                         :
                         fretInlayFret?.includes(i) && fretInlayString(i).includes(Number(stringNum)) ?
                             (
-                                <div key={note} onClick={() => toggleNoteView(note)} className={styles.individualNotes}>
+                                <div key={i} onClick={() => toggleNoteView(note)} className={styles.individualNotes}>
                                     <p style={
                                     { backgroundColor: scaleNotes.join('').includes("#")
                                     ? noteHexes[notesSharp.indexOf(note)]
@@ -95,7 +95,7 @@ const String = ({ stringNum, numOfStrings, numOfFrets, openNote, noteHexes, scal
                                     <div className={styles.fretInlay}></div>
                                 </div>
                             ) :
-                            <div key={note} onClick={() => toggleNoteView(note)} className={styles.individualNotes}>
+                            <div key={i} onClick={() => toggleNoteView(note)} className={styles.individualNotes}>
                                 <p style={
                                     { backgroundColor: scaleNotes.join('').includes("#")
                                     ? noteHexes[notesSharp.indexOf(note)]

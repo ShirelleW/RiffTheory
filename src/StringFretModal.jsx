@@ -22,7 +22,7 @@ const StringFretModal = () => {
                 buttonClick
                 && <Modal
                     className={styles.stringfretmodal}
-                    open={open}
+                    open={true}
                     aria-labelledby="parent-modal-title"
                     aria-describedby="parent-modal-description"
                 >
