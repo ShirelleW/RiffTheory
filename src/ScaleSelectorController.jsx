@@ -24,7 +24,7 @@ const ScaleSelectorController = ({ keyChange, scaleType }) => {
                 <Select
                     labelId="select-key-label"
                     id="key-select"
-                    value={keyChange}
+                    defaultValue={keyChange ?? ''}
                     label="Key"
                     onChange={handleKeyChange}
                 >
@@ -40,7 +40,7 @@ const ScaleSelectorController = ({ keyChange, scaleType }) => {
                 <Select
                     labelId="select-scale-label"
                     id="scale-select"
-                    value={scaleType}
+                    defaultValue={scaleType ?? ''}
                     label="Scale"
                     onChange={(e) => handleScaleTypeChange(e)}
                 >

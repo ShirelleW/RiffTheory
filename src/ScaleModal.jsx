@@ -80,7 +80,7 @@ const ScaleModal = ({ scaleType, keyChange, scaleData, scaleSelected }) => {
                 buttonClick
                 && <Modal
                     className={styles.stringfretmodal}
-                    open={open}
+                    open={true}
                     aria-labelledby="parent-modal-title"
                     aria-describedby="parent-modal-description"
                 >
@@ -100,7 +100,7 @@ const ScaleModal = ({ scaleType, keyChange, scaleData, scaleSelected }) => {
                                                     && scale.name === scaleData[0].name 
                                                     && 'rgb(148, 214, 148)' }}
                                             id={styles.searchResultsButtons}
-                                            key={scale} type='button'
+                                            key={scale.name} type='button'
                                             variant="outlined"
                                             onClick={() => { scaleSearchByKey(scale.name); buttonClicked() }}>
                                             {scale.name} {console.log(scale)}
