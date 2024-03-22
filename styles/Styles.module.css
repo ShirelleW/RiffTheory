@@ -129,7 +129,7 @@
 .searchResults {
     background-color: white;
     display: flex;
-    flex-wrap: wrap;
+    flex-direction: column;
     width: 50vw;
     height: fit-content;
 }
@@ -246,4 +246,13 @@
     position: absolute;
     right: 0;
     bottom: 0;
+}
+
+#resetFretboardBtn{
+    width:fit-content;
+    color: black;
+    font-weight: bold;
+}
+#resetFretboardBtn:hover {
+    background-color: #89D1D6;
 }

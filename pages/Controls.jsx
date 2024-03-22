@@ -50,7 +50,7 @@ const Controls = () => {
                 />
                 {scaleSelected &&
                     <Typography variant="h5" component="h2">
-                         { scaleData[0].name } 
+                        {scaleData[0].name}
                     </Typography>
                 }
                 <div className={styles.fretboardHolder}>
@@ -85,13 +85,11 @@ const Controls = () => {
                                 </div>
                             )
                         }
-                        <Button type='button' onClick={resetFretboard}>
-                            Reset Selected Notes
-                        </Button>
                     </div>
                 </div>
-
-
+                <Button id={styles.resetFretboardBtn} onClick={resetFretboard}>
+                    Reset Selected Notes
+                </Button>
             </div>
         </SelectedNotesContext.Provider >
     )
