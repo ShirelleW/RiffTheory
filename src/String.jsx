@@ -132,5 +132,7 @@ String.propTypes = {
     openNote: PropTypes.string,
     openView: PropTypes.bool,
     noteHexes: PropTypes.array,
-    scaleNotes: PropTypes.array
+    scaleNotes: PropTypes.array,
+    scaleIntervals: PropTypes.array,
+    intervalMode: PropTypes.bool
 };

@@ -11,12 +11,12 @@ import styles from '../styles/Styles.module.css'
 const Controls = () => {
 
     const [selectedNotes, setSelectedNotes] = useState([])
-    const [modeNotes, setModeNotes] = useState(["C", "D", "E", "F", "G", "A", "B", "C"])
+    const [modeNotes, setModeNotes] = useState(["C", "D", "E", "F", "G", "A", "B"])
     const [keyChange, setKeyChange] = useState("C")
     const [scaleType, setScaleType] = useState("Major Scale")
 
     const [intervalMode, setIntevalMode] = useState(false)
-    const [scaleIntervals, setScaleIntervals] = useState([])
+    const [scaleIntervals, setScaleIntervals] = useState(["P1", "M2", "M3", "P4", "P5", "M6", "M7"])
 
     const [stringSet, setStringSet] = useState({
         1: "E", 2: "B", 3: "G", 4: "D", 5: "A", 6: "E"
@@ -47,33 +47,38 @@ const Controls = () => {
             setScaleIntervals
         }}>
             <div className={styles.mainContainer}>
-                <StringFretModal
-                    numOfStrings={numOfStrings}
-                    numOfFrets={numOfFrets}
-                    scaleType={scaleType}
-                />
-                <ScaleModal
-                    scaleSelected={scaleSelected}
-                    scaleData={scaleData}
-                    keyChange={keyChange}
-                    scaleType={scaleType}
-                />
-                {
-                    scaleData.length === 0 &&
-                    <Typography variant="h5" component="h2">
-                        C Major Scale
-                    </Typography>
-                }
-                {scaleSelected &&
-                    <Typography variant="h5" component="h2">
-                        {scaleData[0].name}
-                    </Typography>
-                }
-
-                <div>
-                    <Typography variant="h6" component="h6">Interval Mode</Typography>
-                    <Switch checked={intervalMode} onChange={handleIntervalMode}></Switch>
+                <div className={styles.Controls}>
+                    <StringFretModal
+                        numOfStrings={numOfStrings}
+                        numOfFrets={numOfFrets}
+                        scaleType={scaleType}
+                    />
+                    <ScaleModal
+                        scaleSelected={scaleSelected}
+                        scaleData={scaleData}
+                        keyChange={keyChange}
+                        scaleType={scaleType}
+                    />
+                    <div id={styles.intervalSwitch}>
+                        <Typography id={styles.intervalSwitch} variant="h6" component="h6">3. DECIDE NOTE OR INTERVAL NOTATION</Typography>
+                        <Switch checked={intervalMode} onChange={handleIntervalMode}></Switch>
+                    </div>
                 </div>
+
+                <div className={styles.scaleTitle}>
+                    {
+                        scaleData.length === 0 &&
+                        <Typography variant="h5" component="h2">
+                            C Major Scale
+                        </Typography>
+                    }
+                    {scaleSelected &&
+                        <Typography variant="h5" component="h2">
+                            {scaleData[0].name}
+                        </Typography>
+                    }
+                </div>
+
 
                 <div className={styles.fretboardHolder}>
 
