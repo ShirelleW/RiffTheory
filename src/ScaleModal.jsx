@@ -10,12 +10,12 @@ import styles from '../styles/Styles.module.css'
 const ScaleModal = ({ scaleType, keyChange, scaleData, scaleSelected }) => {
 
     const [buttonClick, setButtonClicked] = useState(false)
-    const [error, setError] = useState(false)
+    // const [error, setError] = useState(false)
 
     const [searchResultData, setSearchResultData] = useState([])
     const [page, setPage] = useState(1)
 
-    const { setModeNotes, setScaleSelected, setScaleData } = useContext(SelectedNotesContext)
+    const { setModeNotes, setScaleSelected, setScaleData, setScaleIntervals } = useContext(SelectedNotesContext)
     const handleOpen = () => {
         setButtonClicked(true)
     }
@@ -36,8 +36,9 @@ const ScaleModal = ({ scaleType, keyChange, scaleData, scaleSelected }) => {
                 setSearchResultData(response.data.scales.sort().slice(0, 10))
             }
 
-        } catch {
-            setError(true)
+        } catch(error) {
+            // setError(true)
+            console.log(error)
         }
 
     }
@@ -49,8 +50,10 @@ const ScaleModal = ({ scaleType, keyChange, scaleData, scaleSelected }) => {
             const response = await axios.get(`http://localhost:3002/api/scales/name/${name}`)
             setScaleData([response.data.scales])
             setModeNotes(response.data.scales.notesinscale.split(','))
-        } catch {
-            setError(true)
+            setScaleIntervals(response.data.scales.scaleintervalformula.split(','))
+        } catch(error) {
+            // setError(true)
+            console.log(error)
         }
     }
 

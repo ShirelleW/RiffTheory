@@ -3,7 +3,7 @@ import { useState } from 'react';
 import { SelectedNotesContext } from '../Context/SelectedNotesContext';
 import StringOpenTuning from '../src/StringOpenTuning.jsx'
 import StringFretModal from '../src/StringFretModal';
-import { Button, Typography } from '@mui/material';
+import { Button, Typography, Switch } from '@mui/material';
 import ScaleModal from '../src/ScaleModal';
 import String from '../src/String';
 import styles from '../styles/Styles.module.css'
@@ -14,6 +14,9 @@ const Controls = () => {
     const [modeNotes, setModeNotes] = useState(["C", "D", "E", "F", "G", "A", "B", "C"])
     const [keyChange, setKeyChange] = useState("C")
     const [scaleType, setScaleType] = useState("Major Scale")
+
+    const [intervalMode, setIntevalMode] = useState(false)
+    const [scaleIntervals, setScaleIntervals] = useState([])
 
     const [stringSet, setStringSet] = useState({
         1: "E", 2: "B", 3: "G", 4: "D", 5: "A", 6: "E"
@@ -32,9 +35,16 @@ const Controls = () => {
         setSelectedNotes([])
     }
 
+    const handleIntervalMode = () => {
+        setIntevalMode((prev) => !prev)
+    }
+
     return (
         <SelectedNotesContext.Provider value={{
-            selectedNotes, setSelectedNotes, modeNotes, numOfFrets, setNumOfStrings, setStringSet, setNumOfFrets, setKeyChange, setScaleType, setModeNotes, setScaleSelected, setScaleData
+            selectedNotes, setSelectedNotes, modeNotes, numOfFrets,
+            setNumOfStrings, setStringSet, setNumOfFrets, setKeyChange,
+            setScaleType, setModeNotes, setScaleSelected, setScaleData,
+            setScaleIntervals
         }}>
             <div className={styles.mainContainer}>
                 <StringFretModal
@@ -49,16 +59,22 @@ const Controls = () => {
                     scaleType={scaleType}
                 />
                 {
-                    scaleData.length === 0 && 
+                    scaleData.length === 0 &&
                     <Typography variant="h5" component="h2">
-                      C Major Scale
+                        C Major Scale
                     </Typography>
                 }
                 {scaleSelected &&
                     <Typography variant="h5" component="h2">
-                      { scaleData[0].name }
+                        {scaleData[0].name}
                     </Typography>
                 }
+
+                <div>
+                    <Typography variant="h6" component="h6">Interval Mode</Typography>
+                    <Switch checked={intervalMode} onChange={handleIntervalMode}></Switch>
+                </div>
+
                 <div className={styles.fretboardHolder}>
 
                     <div className={styles.fretboard}>
@@ -86,6 +102,8 @@ const Controls = () => {
                                             openNote={stringNotePairs[1]}
                                             noteHexes={noteHexes}
                                             scaleNotes={modeNotes}
+                                            scaleIntervals={scaleIntervals}
+                                            intervalMode={intervalMode}
                                         />
                                     </div>
                                 </div>

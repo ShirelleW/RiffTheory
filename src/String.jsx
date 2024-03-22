@@ -4,8 +4,8 @@ import { notes, notesSharp } from '../Context/utils'
 import { SelectedNotesContext } from '../Context/SelectedNotesContext'
 import styles from '../styles/Styles.module.css'
 
-const String = ({ stringNum, numOfStrings, numOfFrets, openNote, noteHexes, scaleNotes }) => {
-
+const String = ({ stringNum, numOfStrings, numOfFrets, openNote, 
+                    noteHexes, scaleNotes, scaleIntervals, intervalMode }) => {
 
     const fretNote = (currentNote) => {
         let nextNote;
@@ -57,6 +57,14 @@ const String = ({ stringNum, numOfStrings, numOfFrets, openNote, noteHexes, scal
         )
     }
 
+    const scaleIntervalControl = (note) => {
+        // modeNotes gets set in searchByKEy Button function in ScaleModal
+        // Since intervals were based off note order at collection, 
+        // we know that interval index = mode note index
+
+        return scaleIntervals[modeNotes.indexOf(note)]
+    }
+
     return (
         <div className={styles.string}>
             {
@@ -69,7 +77,9 @@ const String = ({ stringNum, numOfStrings, numOfFrets, openNote, noteHexes, scal
                                     { backgroundColor: scaleNotes.join('').includes("#")
                                     ? noteHexes[notesSharp.indexOf(note)]
                                     : noteHexes[notes.indexOf(note)], 'opacity': 0.6 }}
-                                    id={styles.noteToggle}>{note}</p>
+                                    id={styles.noteToggle}>
+                                        {intervalMode ? scaleIntervalControl(note) : note}
+                                    </p>
                                     <div className={styles.fretInlay}></div>
                                 </div>
                             ) :
@@ -79,7 +89,9 @@ const String = ({ stringNum, numOfStrings, numOfFrets, openNote, noteHexes, scal
                                     { backgroundColor: scaleNotes.join('').includes("#")
                                     ? noteHexes[notesSharp.indexOf(note)]
                                     : noteHexes[notes.indexOf(note)], 'opacity': 0.6 }} 
-                                    id={styles.noteToggle}>{note}</p>
+                                    id={styles.noteToggle}>
+                                        {intervalMode ? scaleIntervalControl(note) : note}
+                                    </p>
                                 </div>
                             )
                     )
