@@ -4,8 +4,10 @@ import { notes, notesSharp } from '../Context/utils'
 import { SelectedNotesContext } from '../Context/SelectedNotesContext'
 import styles from '../styles/Styles.module.css'
 
-const String = ({ stringNum, numOfStrings, numOfFrets, openNote, 
-                    noteHexes, scaleNotes, scaleIntervals, intervalMode }) => {
+const String = ({ stringNum, numOfStrings, numOfFrets, openNote,
+    noteHexes, scaleNotes, scaleIntervals, intervalMode }) => {
+
+    const { selectedNotes, setSelectedNotes, modeNotes, rotation } = useContext(SelectedNotesContext)
 
     const fretNote = (currentNote) => {
         let nextNote;
@@ -35,8 +37,6 @@ const String = ({ stringNum, numOfStrings, numOfFrets, openNote,
 
 
     const stringNoteLayout = stringLayout()
-
-    const { selectedNotes, setSelectedNotes, modeNotes } = useContext(SelectedNotesContext)
 
     const fretInlayFret = [2, 4, 6, 8, 11, 14, 16, 18, 20, 23]
 
@@ -74,10 +74,12 @@ const String = ({ stringNum, numOfStrings, numOfFrets, openNote,
                             (
                                 <div key={i} className={styles.individualNotes}>
                                     <p style={
-                                    { backgroundColor: scaleNotes.join('').includes("#")
-                                    ? noteHexes[notesSharp.indexOf(note)]
-                                    : noteHexes[notes.indexOf(note)], 'opacity': 0.6 }}
-                                    id={styles.noteToggle}>
+                                        {
+                                            backgroundColor: scaleNotes.join('').includes("#")
+                                                ? noteHexes[notesSharp.indexOf(note)]
+                                                : noteHexes[notes.indexOf(note)], 'opacity': 0.6
+                                        }}
+                                        id={rotation ? styles.noteToggleRotate : styles.noteToggle}>
                                         {intervalMode ? scaleIntervalControl(note) : note}
                                     </p>
                                     <div className={styles.fretInlay}></div>
@@ -86,10 +88,12 @@ const String = ({ stringNum, numOfStrings, numOfFrets, openNote,
                             (
                                 <div key={i} className={styles.individualNotes}>
                                     <p style={
-                                    { backgroundColor: scaleNotes.join('').includes("#")
-                                    ? noteHexes[notesSharp.indexOf(note)]
-                                    : noteHexes[notes.indexOf(note)], 'opacity': 0.6 }} 
-                                    id={styles.noteToggle}>
+                                        {
+                                            backgroundColor: scaleNotes.join('').includes("#")
+                                                ? noteHexes[notesSharp.indexOf(note)]
+                                                : noteHexes[notes.indexOf(note)], 'opacity': 0.6
+                                        }}
+                                        id={rotation ? styles.noteToggleRotate : styles.noteToggle}>
                                         {intervalMode ? scaleIntervalControl(note) : note}
                                     </p>
                                 </div>
@@ -100,19 +104,31 @@ const String = ({ stringNum, numOfStrings, numOfFrets, openNote,
                             (
                                 <div key={i} onClick={() => toggleNoteView(note)} className={styles.individualNotes}>
                                     <p style={
-                                    { backgroundColor: scaleNotes.join('').includes("#")
-                                    ? noteHexes[notesSharp.indexOf(note)]
-                                    : noteHexes[notes.indexOf(note)], 'opacity': 0.6 }}
-                                    id={selectedNotes?.includes(note) ? styles.noteToggle : undefined}>{selectedNotes?.includes(note) && note}</p>
+                                        {
+                                            backgroundColor: scaleNotes.join('').includes("#")
+                                                ? noteHexes[notesSharp.indexOf(note)]
+                                                : noteHexes[notes.indexOf(note)], 'opacity': 0.6
+                                        }}
+                                        id={
+                                            rotation && selectedNotes?.includes(note) ? styles.noteToggleRotate :
+                                            selectedNotes?.includes(note) ? styles.noteToggle : undefined
+                                        }
+                                        >{selectedNotes?.includes(note) && note}</p>
                                     <div className={styles.fretInlay}></div>
                                 </div>
                             ) :
                             <div key={i} onClick={() => toggleNoteView(note)} className={styles.individualNotes}>
                                 <p style={
-                                    { backgroundColor: scaleNotes.join('').includes("#")
-                                    ? noteHexes[notesSharp.indexOf(note)]
-                                    : noteHexes[notes.indexOf(note)], 'opacity': 0.6 }}
-                                    id={selectedNotes?.includes(note) ? styles.noteToggle : undefined}>
+                                    {
+                                        backgroundColor: scaleNotes.join('').includes("#")
+                                            ? noteHexes[notesSharp.indexOf(note)]
+                                            : noteHexes[notes.indexOf(note)], 'opacity': 0.6
+                                    }}
+                                    id={
+                                        rotation && selectedNotes?.includes(note) ? styles.noteToggleRotate :
+                                        selectedNotes?.includes(note) ? styles.noteToggle : undefined
+                                    }
+                                    >
                                     {selectedNotes?.includes(note) && note}
                                 </p>
                             </div>

@@ -51,7 +51,7 @@ const Controls = () => {
             selectedNotes, setSelectedNotes, modeNotes, numOfFrets,
             setNumOfStrings, setStringSet, setNumOfFrets, setKeyChange,
             setScaleType, setModeNotes, setScaleSelected, setScaleData,
-            setScaleIntervals
+            setScaleIntervals, rotation
         }}>
             <div className={rotation ? styles.mainContainerRotate : styles.mainContainer}>
                 <div className={rotation ? styles.infoContainerRotate : styles.infoContainer}>
@@ -70,7 +70,7 @@ const Controls = () => {
                             />
                             <div id={styles.intervalSwitch}>
                                 <Typography id={styles.intervalSwitch} variant="h6" component="h6">3. DECIDE NOTE OR INTERVAL NOTATION</Typography>
-                                <Switch checked={intervalMode} onChange={handleIntervalMode}></Switch>
+                                <Switch checked={intervalMode} color="warning" onChange={handleIntervalMode}></Switch>
                             </div>
 
                             {

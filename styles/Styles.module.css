@@ -7,7 +7,7 @@
 .logo {
     width: 100vw;
     height: 100px;
-    background-image: url('../pics//rt-logo-gray.png');
+    background-image: url('../pics/rt-logo-blue.png');
     background-repeat: no-repeat;
     background-size: contain;
 }
@@ -18,7 +18,7 @@
     align-content: space-evenly;
     align-items: center;
     width: 100vw;
-    height: 120vh;
+    height: 130vh;
 }
 
 .mainContainerRotate{
@@ -299,6 +299,20 @@
     height: 25px;
     place-self: center;
     z-index: 1;
+}
+
+#noteToggleRotate {
+    font-weight: bold;
+    font-family: "PT Sans", sans-serif;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 75%;
+    width: 25px;
+    height: 25px;
+    place-self: center;
+    z-index: 1;
+    transform: rotate(-90deg);
 }
 
 .fretInlay {
