@@ -1,9 +1,11 @@
 .mainStyle {
-    background-color: #95A3A4;
+    background-color: #0E79B2;
+    display: flex;
+    flex-direction:column;
 }
 
 .logo {
-    width: 300px;
+    width: 100vw;
     height: 100px;
     background-image: url('../pics//rt-logo-gray.png');
     background-repeat: no-repeat;
@@ -19,8 +21,32 @@
     height: 120vh;
 }
 
+.mainContainerRotate{
+    width: 100vw;
+    height: 210vh;
+    display: flex;
+    flex-direction: row;
+    align-items: flex-start;
+}
+.infoContainer{
+    width: 40vw;
+    display: flex;
+    justify-content: center;
+}
+.infoContainerRotate{
+    width: 40vw;
+    display: flex;
+    align-items:flex-start;
+    justify-content: flex-end;
+}
+.info{
+    display: flex;
+    flex-direction: column;
+    align-content: space-evenly;
+    align-items: center;
+}
 .Controls{
-    height: 100px;
+    height: 25vh;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -31,6 +57,16 @@
     display: flex;
     flex-direction: row;
     align-items: center;
+    font-size: 14px;
+    font-weight: bold;
+}
+
+#rotationbtn{
+    width: 15vw;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    align-content: space-between;
     font-size: 14px;
     font-weight: bold;
 }
@@ -162,7 +198,7 @@
 }
 
 .scaleTitle{
-    margin-top: 20px;
+    text-align: center;
 }
 .openNoteSelector {
     width: 4vw;
@@ -171,9 +207,18 @@
 }
 
 .fretboardHolder {
+    width: 100vw;
     margin-top: 20px;
     display: flex;
-    justify-content: space-evenly;
+    justify-content: center;
+}
+
+.fretboardHolderRotate{
+    width: 50vw;
+    margin-top: 20px;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
 }
 
 .fretboard {
@@ -181,7 +226,14 @@
     flex-direction: column;
     height: max-content;
     width: max-content;
+}
 
+.fretboardRotate{
+    display: flex;
+    flex-direction: column;
+    height: max-content;
+    width: max-content;
+    transform: rotate(90deg);
 }
 
 .stringMapping {
