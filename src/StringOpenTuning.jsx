@@ -6,7 +6,7 @@ import { SelectedNotesContext } from '../Context/SelectedNotesContext'
 
 const StringOpenTuning = ({stringNotePairs, modeNotes, noteHexes, stringSet }) => {
 
-    const {setStringSet } = useContext(SelectedNotesContext)
+    const {setStringSet, rotation } = useContext(SelectedNotesContext)
 
     const handleTunings = (e, stringNum) => {stringSet
         // making a copy of stringSet without modifying stringSet
@@ -22,7 +22,7 @@ const StringOpenTuning = ({stringNotePairs, modeNotes, noteHexes, stringSet }) =
     return (
         <div>
             <form>
-                <select className={styles.openNoteSelector}
+                <select className={rotation ? styles.openNoteSelectorRotate : styles.openNoteSelector}
                     style={{
                         backgroundColor: modeNotes.includes(stringNotePairs[1])
                             ? modeNotes.join('').includes("#")

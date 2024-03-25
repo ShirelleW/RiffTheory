@@ -200,10 +200,17 @@
 .scaleTitle{
     text-align: center;
 }
+
 .openNoteSelector {
     width: 4vw;
     height: 7vh;
     border-bottom: 1px solid black;
+}
+.openNoteSelectorRotate {
+    transform: rotate(-90deg);
+    width: 3.5vw;
+    height: 7vh;
+    border-bottom: px solid black;
 }
 
 .fretboardHolder {
