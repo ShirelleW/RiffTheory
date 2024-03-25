@@ -102,7 +102,7 @@ const String = ({ stringNum, numOfStrings, numOfFrets, openNote,
                         :
                         fretInlayFret?.includes(i) && fretInlayString(i).includes(Number(stringNum)) ?
                             (
-                                <div key={i} onClick={() => toggleNoteView(note)} className={styles.individualNotes}>
+                                <div key={i} onClick={() =>  toggleNoteView(note)}  className={styles.individualNotes}>
                                     <p style={
                                         {
                                             backgroundColor: scaleNotes.join('').includes("#")
@@ -117,7 +117,7 @@ const String = ({ stringNum, numOfStrings, numOfFrets, openNote,
                                     <div className={styles.fretInlay}></div>
                                 </div>
                             ) :
-                            <div key={i} onClick={() => toggleNoteView(note)} className={styles.individualNotes}>
+                            <div key={i} onClick={() =>  toggleNoteView(note)} className={styles.individualNotes}>
                                 <p style={
                                     {
                                         backgroundColor: scaleNotes.join('').includes("#")

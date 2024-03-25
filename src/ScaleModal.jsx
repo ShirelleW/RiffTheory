@@ -32,15 +32,17 @@ const ScaleModal = ({ scaleType, keyChange, scaleData, scaleSelected }) => {
                 setSearchResultData(response.data.scales.sort().slice(0, 10))
             } else {
                 const response = await axios.get(`http://localhost:3002/api/scales/tonicandname/${keyChange}/${scaleType}`)
-                setScaleData(response.data.scales.sort())
-                setSearchResultData(response.data.scales.sort().slice(0, 10))
+                if (response.data.message === "No scales to return!"){
+                    setSearchResultData([{error: "NO SCALES TO VIEW, TRY ANOTHER SEARCH SELECTION"}])
+                } else {
+                    setScaleData(response.data.scales.sort())
+                    setSearchResultData(response.data.scales.sort().slice(0, 10))
+                }
             }
-
         } catch(error) {
             // setError(true)
             console.log(error)
         }
-
     }
 
     const scaleSearchByKey = async (name) => {
@@ -76,6 +78,7 @@ const ScaleModal = ({ scaleType, keyChange, scaleData, scaleSelected }) => {
         fetchSearchResults(value)
     }
 
+
     return (
         <div className={styles.modalController}>
             <Button onClick={handleOpen} id={styles.pickTitle}>2. Pick Your Scale</Button>
@@ -101,12 +104,15 @@ const ScaleModal = ({ scaleType, keyChange, scaleData, scaleSelected }) => {
                                             style={
                                                 { backgroundColor: scaleSelected 
                                                     && scale.name === scaleData[0].name 
-                                                    && 'rgb(148, 214, 148)' }}
+                                                    ? 'rgb(148, 214, 148)' : scale.error && 'red'}}
                                             id={styles.searchResultsButtons}
                                             key={scale.name} type='button'
                                             variant="outlined"
-                                            onClick={() => { scaleSearchByKey(scale.name); buttonClicked() }}>
-                                            {scale.name}
+                                            onClick={() => { 
+                                                scale.error ? null :
+                                                scaleSearchByKey(scale.name); buttonClicked() 
+                                            }}>
+                                            {scale.name ? scale.name : scale.error}
                                         </Button>
                                     )
                                 }
