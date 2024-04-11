@@ -4,6 +4,7 @@ import { SelectedNotesContext } from '../Context/SelectedNotesContext';
 import StringOpenTuning from '../src/StringOpenTuning.jsx'
 import StringFretModal from '../src/StringFretModal';
 import { Button, Typography, Switch } from '@mui/material';
+import Card from '@mui/material/Card';
 import Rotate90DegreesCwTwoToneIcon from '@mui/icons-material/Rotate90DegreesCwTwoTone';
 import Rotate90DegreesCcwIcon from '@mui/icons-material/Rotate90DegreesCcw';
 import ScaleModal from '../src/ScaleModal';
@@ -56,37 +57,40 @@ const Controls = () => {
             <div className={rotation ? styles.mainContainerRotate : styles.mainContainer}>
                 <div className={rotation ? styles.infoContainerRotate : styles.infoContainer}>
                     <div className={styles.info}>
-                        <div className={styles.Controls}>
-                            <StringFretModal
-                                numOfStrings={numOfStrings}
-                                numOfFrets={numOfFrets}
-                                scaleType={scaleType}
-                            />
-                            <ScaleModal
-                                scaleSelected={scaleSelected}
-                                scaleData={scaleData}
-                                keyChange={keyChange}
-                                scaleType={scaleType}
-                            />
-                            <div id={styles.intervalSwitch}>
-                                <Typography id={styles.intervalSwitch} variant="h6" component="h6">3. DECIDE NOTE OR INTERVAL NOTATION</Typography>
-                                <Switch checked={intervalMode} color="warning" onChange={handleIntervalMode}></Switch>
+                        <Card className={styles.infoCard}>
+                            <div className={styles.Controls}>
+
+                                <StringFretModal
+                                    numOfStrings={numOfStrings}
+                                    numOfFrets={numOfFrets}
+                                    scaleType={scaleType}
+                                />
+                                <ScaleModal
+                                    scaleSelected={scaleSelected}
+                                    scaleData={scaleData}
+                                    keyChange={keyChange}
+                                    scaleType={scaleType}
+                                />
+                                <div id={styles.intervalSwitch}>
+                                    <Typography id={styles.intervalSwitch} variant="h6" component="h6">3. DECIDE NOTE OR INTERVAL NOTATION</Typography>
+                                    <Switch checked={intervalMode} color="warning" onChange={handleIntervalMode}></Switch>
+                                </div>
+
+                                {
+                                    rotation ?
+                                        <div id={styles.rotationbtn}>
+                                            <Typography id={styles.rotationbtn} variant="h6" component="h6">4. DECIDE LAYOUT</Typography>
+                                            <Rotate90DegreesCcwIcon onClick={() => setRotation(false)} />
+                                        </div>
+                                        : <div id={styles.rotationbtn}>
+                                            <Typography id={styles.rotationbtn} variant="h6" component="h6">4. DECIDE LAYOUT</Typography>
+                                            <Rotate90DegreesCwTwoToneIcon onClick={() => setRotation(true)} />
+                                        </div>
+                                }
+
                             </div>
-
-                            {
-                                rotation ?
-                                    <div id={styles.rotationbtn}>
-                                        <Typography id={styles.rotationbtn} variant="h6" component="h6">4. DECIDE LAYOUT</Typography>
-                                        <Rotate90DegreesCcwIcon onClick={() => setRotation(false)} />
-                                    </div>
-                                    : <div id={styles.rotationbtn}>
-                                        <Typography id={styles.rotationbtn} variant="h6" component="h6">4. DECIDE LAYOUT</Typography>
-                                        <Rotate90DegreesCwTwoToneIcon onClick={() => setRotation(true)} />
-                                    </div>
-                            }
-
-                        </div>
-
+                        </Card>
+                        <br></br>
                         <div className={styles.scaleTitle}>
                             {
                                 scaleData.length === 0 &&

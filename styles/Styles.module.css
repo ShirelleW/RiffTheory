@@ -45,6 +45,9 @@
     align-content: space-evenly;
     align-items: center;
 }
+.infoCard{
+    background: linear-gradient(#bd93d8, #feb47b);
+}
 .Controls{
     height: 25vh;
     display: flex;
