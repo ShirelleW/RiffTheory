@@ -9,10 +9,9 @@ import styles from '../styles/Styles.module.css'
 
 const ScaleModal = ({ scaleType, keyChange, scaleData, scaleSelected }) => {
 
-    const [error, setError] = useState(false) 
+    const [setError] = useState(false) 
 
     const [buttonClick, setButtonClicked] = useState(false)
-    // const [error, setError] = useState(false)
 
     const [searchResultData, setSearchResultData] = useState([])
     const [page, setPage] = useState(1)
@@ -29,11 +28,11 @@ const ScaleModal = ({ scaleType, keyChange, scaleData, scaleSelected }) => {
     const scaleSearch = async () => {
         try {
             if (scaleType === "Search By Key") {
-                const response = await axios.get(`http://hmub:3002/api/scales/tonic/${keyChange}`)
+                const response = await axios.get(`http://localhost:3002/api/scales/tonic/${keyChange}`)
                 setScaleData(response.data.scales.sort())
                 setSearchResultData(response.data.scales.sort().slice(0, 10))
             } else {
-                const response = await axios.get(`http://hmub:3002/api/scales/tonicandname/${keyChange}/${scaleType}`)
+                const response = await axios.get(`http://localhost:3002/api/scales/tonicandname/${keyChange}/${scaleType}`)
                 if (response.data.message === "No scales to return!"){
                     setSearchResultData([{error: "NO SCALES TO VIEW, TRY ANOTHER SEARCH SELECTION"}])
                 } else {
@@ -51,7 +50,7 @@ const ScaleModal = ({ scaleType, keyChange, scaleData, scaleSelected }) => {
         name = name.replace("#", "%23")
 
         try {
-            const response = await axios.get(`http://hmub:3002/api/scales/name/${name}`)
+            const response = await axios.get(`http://localhost:3002/api/scales/name/${name}`)
             setScaleData([response.data.scales])
             setModeNotes(response.data.scales.notesinscale.split(','))
             setScaleIntervals(response.data.scales.scaleintervalformula.split(','))

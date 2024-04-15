@@ -101,7 +101,6 @@ export const chordTypes = {
     'Hirajoshi': undefined,
     'Hungarian major': undefined,
     'Hungarian minor': undefined,
-    'In': undefined,
     'Insen': undefined,
     'Istrian': undefined,
     'Iwato': undefined,

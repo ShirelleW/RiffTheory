@@ -1,5 +1,5 @@
 .mainStyle {
-    background-color: #0E79B2;
+    background: linear-gradient(#5ce1e6, #8c52ff);
     display: flex;
     flex-direction:column;
 }
@@ -7,7 +7,7 @@
 .logo {
     width: 100vw;
     height: 100px;
-    background-image: url('../pics/rt-logo-blue.png');
+    background-image: url('../pics/getloudblue.png');
     background-repeat: no-repeat;
     background-size: contain;
 }
@@ -46,7 +46,7 @@
     align-items: center;
 }
 .infoCard{
-    background: linear-gradient(#bd93d8, #feb47b);
+    background: linear-gradient(#f69292, #feb47b);
 }
 .Controls{
     height: 25vh;
@@ -80,7 +80,7 @@
 }
 
 #pickTitle:hover {
-    background-color: #89D1D6;
+    background-color: #83d88d;
 }
 
 .stringfretmodal {
