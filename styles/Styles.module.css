@@ -136,6 +136,12 @@
     flex-direction: row;
 }
 
+#errorBox {
+  background-color: azure;
+  border: '2px solid #000';
+  box-shadow: 24;
+}
+
 .scalesSearchContainer {
     display: flex;
     flex-direction: column;
